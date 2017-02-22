@@ -1,0 +1,15 @@
+[user]
+	email = bruno.delfino1995@gmail.com
+	name = Bruno Felipe Leal Delfino
+[core]
+	editor = vim
+[alias]
+	please = push --force-with-lease
+	commend = commit --amend --no-edit
+	it = !git init && git commit -m \"Initial commit\" --allow-empty
+	grog = log --graph --decorate --all --format=format:\"%C(bold blue)%h%C(bold yellow)%d%n%C(white)%s%n%C(white)%an at %C(bold green)(%ar)%n\"
+	merc = merge --no-ff
+	shorty = status --short --branch
+	unstage = reset HEAD
+[commit]
+	gpgsign = true
