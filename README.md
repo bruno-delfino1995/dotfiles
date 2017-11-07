@@ -3,6 +3,8 @@
 Inspired by some of the most awesome repositories for dotfiles, I've created this
 one to help me with my helpful configurations and scripts
 
+**TODO: Implement this proposal, by now it's all linked by the path - only implemented for home**
+
 ## Special files
 
 There's some special files in the hierarchy.
@@ -29,7 +31,7 @@ Run this:
 cd ~
 git clone <repository> .dotfiles
 cd ~/.dotfiles
-script/install
+script/install-home
 ```
 
 This will symlink the appropriate files in `.dotfiles`.
