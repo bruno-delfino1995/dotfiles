@@ -19,3 +19,13 @@ fi
 
 # Aliases
 alias ls='ls --color=auto'
+
+source <(antibody init)
+
+antibody bundle zsh-users/zsh-syntax-highlighting
+antibody bundle zsh-users/zsh-autosuggestions
+antibody bundle zsh-users/zsh-completions
+antibody bundle Tarrasch/zsh-bd
+
+AUTOENV_FILE_ENTER=".env"
+antibody bundle Tarrasch/zsh-autoenv
