@@ -32,7 +32,4 @@ antibody bundle zsh-users/zsh-history-substring-search
 antibody bundle Tarrasch/zsh-bd
 antibody bundle halfo/lambda-mod-zsh-theme
 
-AUTOENV_FILE_ENTER=".env"
-antibody bundle Tarrasch/zsh-autoenv
-
 [ -f ~/.localrc ] && . ~/.localrc
