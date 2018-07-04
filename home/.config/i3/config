@@ -6,11 +6,15 @@
 # layout.
 
 set $mod Mod4
+set $alt Mod1
 
 font pango:DejaVu Sans Mono 10
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
+# lock screen
+bindsym $mod+$alt+l exec i3lock --color 000000
 
 # start a terminal
 bindsym $mod+Return exec termite -e "zsh --login" -t "Terminal"
@@ -26,6 +30,7 @@ bindsym $mod+space exec rofi -show drun
 bindsym $mod+m exec termite -e "ranger"
 
 # change focus
+focus_follows_mouse no
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
