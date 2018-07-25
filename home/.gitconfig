@@ -13,3 +13,5 @@
 	unstage = reset HEAD
 [commit]
 	gpgsign = true
+[pull]
+	rebase = true
