@@ -171,9 +171,9 @@ client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 bindsym XF86Tools exec spotify
 
 # ALSA controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset Master 5%+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset Master 5%-
-bindsym XF86AudioMute exec --no-startup-id amixer sset Master toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-
+bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
