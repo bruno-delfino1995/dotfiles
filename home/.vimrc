@@ -18,10 +18,12 @@ syntax on			" enable syntax highlighting
 "
 set noerrorbells                " No beeps
 set number                      " Show line numbers
+set relativenumber		" Show line numbers relative to cursor position
 set backspace=indent,eol,start  " Makes backspace key more powerful.
 set showcmd                     " Show me what I'm typing
 set showmode                    " Show current mode.
-set clipboard=unnamedplus       " Use X11 Clipboard
+set clipboard=unnamed,unnamedplus       " Use X11 Clipboard
+set nowrap			" Do not wrap long lines
 
 set splitright                  " Split vertical windows right to the current windows
 set splitbelow                  " Split horizontal windows below to the current windows
