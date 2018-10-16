@@ -34,6 +34,8 @@ set shiftwidth=2
 set softtabstop=2
 inoremap <S-Tab> <C-d>
 
+set foldmethod=indent
+
 set splitright                  " Split vertical windows right to the current windows
 set splitbelow                  " Split horizontal windows below to the current windows
 set encoding=utf-8              " Set default encoding to UTF-8
