@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
@@ -24,6 +25,14 @@ set showcmd                     " Show me what I'm typing
 set showmode                    " Show current mode.
 set clipboard=unnamed,unnamedplus       " Use X11 Clipboard
 set nowrap			" Do not wrap long lines
+
+"
+" Tab configuration
+"
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+inoremap <S-Tab> <C-d>
 
 set splitright                  " Split vertical windows right to the current windows
 set splitbelow                  " Split horizontal windows below to the current windows
