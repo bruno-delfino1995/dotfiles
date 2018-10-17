@@ -25,6 +25,7 @@ set showcmd                     " Show me what I'm typing
 set showmode                    " Show current mode.
 set clipboard=unnamed,unnamedplus       " Use X11 Clipboard
 set nowrap			" Do not wrap long lines
+set colorcolumn=80              " Set a vertical lign at width=80
 
 "
 " Tab configuration
@@ -32,7 +33,6 @@ set nowrap			" Do not wrap long lines
 set expandtab
 set shiftwidth=2
 set softtabstop=2
-inoremap <S-Tab> <C-d>
 
 set foldmethod=indent
 
@@ -56,3 +56,10 @@ set ttyfast
 " speed up syntax highlighting
 set nocursorcolumn
 set nocursorline
+
+"
+" Key Mappings
+"
+nnoremap <Space> :nohl<CR>
+inoremap <S-Tab> <C-d>
+
