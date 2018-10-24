@@ -5,6 +5,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'kien/ctrlp.vim'
 
 call plug#end()
 
