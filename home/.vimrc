@@ -62,4 +62,5 @@ set nocursorline
 "
 nnoremap <Space> :nohl<CR>
 inoremap <S-Tab> <C-d>
-
+nnoremap <C-Tab> gt
+nnoremap <C-S-Tab> gT
