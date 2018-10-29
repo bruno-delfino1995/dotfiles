@@ -2,29 +2,30 @@
 DOTFILES_ROOT=$(pwd -P)
 
 success() {
-	# shellcheck disable=SC2059
-	printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+  # shellcheck disable=SC2059
+  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
 }
 
 link_file() {
-	if [ -e "$2" ]; then
-		if [ "$(readlink "$2")" = "$1" ]; then
-			success "skipped $1"
-			return 0
-		else
-			mv "$2" "$2.backup"
-			success "moved $2 to $2.backup"
-		fi
-	fi
-	ln -sf "$1" "$2"
-	success "linked $1 to $2"
+  if [ -e "$2" ]; then
+    if [ "$(readlink "$2")" = "$1" ]; then
+      success "skipped $1"
+      return 0
+    else
+      mv "$2" "$2.backup"
+      success "moved $2 to $2.backup"
+    fi
+  fi
+  ln -sf "$1" "$2"
+  success "linked $1 to $2"
 }
 
 find -H "${DOTFILES_ROOT}/home" -maxdepth 3 |
-	while read -r src; do
-		if [[ -f $src ]]; then
-			path=${src#"${DOTFILES_ROOT}/home"/}
-			dst="$HOME/"${path}""
-			link_file "$src" "$dst"
-		fi
-	done
+  while read -r src; do
+    if [[ -f $src ]]; then
+      path=${src#"${DOTFILES_ROOT}/home"/}
+      dst="$HOME/"${path}""
+      mkdir -p $(dirname "$dst")
+      link_file "$src" "$dst"
+    fi
+  done
