@@ -1,2 +1,3 @@
-exec i3
 pulseaudio -D
+
+exec i3

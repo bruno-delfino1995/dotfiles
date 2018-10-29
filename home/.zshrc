@@ -19,8 +19,11 @@ if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
 	exec startx
 fi
 
+
 # Aliases
-alias ls='ls --color=auto'
+if [ -e ~/.zshrc.aliases ] ; then
+   source ~/.zshrc.aliases
+fi
 
 source <(antibody init)
 
@@ -33,4 +36,3 @@ antibody bundle Tarrasch/zsh-bd
 antibody bundle halfo/lambda-mod-zsh-theme
 
 [ -f ~/.localrc ] && . ~/.localrc
-
