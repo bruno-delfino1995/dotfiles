@@ -33,3 +33,4 @@ antibody bundle Tarrasch/zsh-bd
 antibody bundle halfo/lambda-mod-zsh-theme
 
 [ -f ~/.localrc ] && . ~/.localrc
+
