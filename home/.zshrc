@@ -27,7 +27,7 @@ fi
 
 source <(antibody init)
 
-antibody bundle robbyrussell/oh-my-zsh folder:lib
+antibody bundle robbyrussell/oh-my-zsh path:lib
 antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-completions

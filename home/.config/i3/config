@@ -10,9 +10,6 @@ set $alt Mod1
 
 font pango:DejaVu Sans Mono 10
 
-# Background services
-exec compton -b
-
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
