@@ -34,6 +34,7 @@ set colorcolumn=80              " Set a vertical lign at width=80
 " tab configuration
 set expandtab
 set shiftwidth=2
+set tabstop=2
 set softtabstop=2
 set foldmethod=indent
 
