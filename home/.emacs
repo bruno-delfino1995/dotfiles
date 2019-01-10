@@ -2,16 +2,7 @@
 (package-initialize)
 
 (load "~/.emacs.d/package-manager.el")
-
-(use-package undo-tree
-  :ensure t)
-
-(use-package goto-chg
-  :ensure t)
-
-(use-package evil
-  :ensure t
-  :config (evil-mode))
+(load "~/.emacs.d/packages.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
