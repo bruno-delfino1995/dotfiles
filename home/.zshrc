@@ -19,20 +19,18 @@ if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
 	exec startx
 fi
 
-
 # Aliases
 if [ -e ~/.zshrc.aliases ] ; then
    source ~/.zshrc.aliases
 fi
 
-source <(antibody init)
-
-antibody bundle robbyrussell/oh-my-zsh path:lib
-antibody bundle zsh-users/zsh-syntax-highlighting
-antibody bundle zsh-users/zsh-autosuggestions
-antibody bundle zsh-users/zsh-completions
-antibody bundle zsh-users/zsh-history-substring-search
-antibody bundle Tarrasch/zsh-bd
-antibody bundle halfo/lambda-mod-zsh-theme
+# Plugins
+if [ -e ~/.cache/zsh/.zshrc.plugins ]; then
+    source ~/.cache/zsh/.zshrc.plugins
+else
+    mkdir -p ~/.cache/zsh
+    antibody bundle < ~/.zshrc.plugins > ~/.cache/zsh/.zshrc.plugins
+    source ~/.cache/zsh/.zshrc.plugins
+fi
 
 [ -f ~/.localrc ] && . ~/.localrc

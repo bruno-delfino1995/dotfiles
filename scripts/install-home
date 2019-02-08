@@ -1,5 +1,5 @@
 #!/bin/sh
-DIR=$(dirname "$0")
+DIR=$(readlink -f `dirname "$0"`)
 DOTFILES_ROOT=$(dirname "$DIR")
 
 success() {
