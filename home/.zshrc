@@ -33,4 +33,7 @@ else
     source ~/.cache/zsh/.zshrc.plugins
 fi
 
+source ~/.asdf/asdf.sh
+source ~/.asdf/completions/asdf.bash
+
 [ -f ~/.localrc ] && . ~/.localrc
