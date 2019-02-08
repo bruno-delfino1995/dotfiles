@@ -1,5 +1,6 @@
 #!/bin/sh
-DOTFILES_ROOT=$(pwd -P)
+DIR=$(dirname "$0")
+DOTFILES_ROOT=$(dirname "$DIR")
 
 success() {
   # shellcheck disable=SC2059
