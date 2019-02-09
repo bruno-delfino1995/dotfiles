@@ -36,4 +36,15 @@ fi
 source ~/.asdf/asdf.sh
 source ~/.asdf/completions/asdf.bash
 
+plugins_to_install=$(sort ~/.asdfrc.plugins)
+installed_plugins=$(sort <(asdf plugin-list))
+uninstalled_plugins=$(diff --changed-group-format='%<' --unchanged-group-format='' \
+    <(echo $plugins_to_install) \
+    <(echo $installed_plugins)
+)
+
+for p in $uninstalled_plugins; do
+    asdf plugin-add "$p"
+done;
+
 [ -f ~/.localrc ] && . ~/.localrc

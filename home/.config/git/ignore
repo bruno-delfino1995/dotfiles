@@ -6,3 +6,9 @@
 
 # VIM
 *.swp
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
