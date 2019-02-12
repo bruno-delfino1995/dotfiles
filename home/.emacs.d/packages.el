@@ -18,16 +18,3 @@
   :ensure t
   :config (evil-collection-init))
 
-(setq linum-format "%d ")
-(setq-default left-fringe-width  5)
-(setq-default right-fringe-width  0)
-
-(use-package linum-relative
-  :ensure t
-  :init
-  (setq linum-relative-current-symbol "")
-  :config (linum-relative-global-mode))
-
-(use-package hlinum
-  :ensure t
-  :config (hlinum-activate))
