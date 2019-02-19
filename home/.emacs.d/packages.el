@@ -1,3 +1,6 @@
+(use-package general
+  :ensure t)
+
 (use-package undo-tree
   :ensure t)
 
@@ -13,8 +16,31 @@
   :config
   (evil-mode 1))
 
+(use-package evil-surround
+  :after evil
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
+
 (use-package evil-collection
   :after evil
   :ensure t
   :config (evil-collection-init))
 
+(use-package projectile
+  :ensure t
+  :general
+  (:states 'normal
+   :keymaps 'override
+   "C-p" 'projectile-command-map)
+  :init
+  (setq projectile-completion-system 'ivy)
+  :config (projectile-mode +1))
+
+(use-package ivy
+  :ensure t
+  :config (ivy-mode 1))
+
+(use-package counsel
+  :ensure t
+  :config (counsel-mode 1))

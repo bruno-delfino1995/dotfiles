@@ -7,6 +7,18 @@
 ;; Remove scrollbars
 (when (display-graphic-p) (set-scroll-bar-mode nil))
 
+;; Theming
+(use-package color-theme-modern
+  :ensure t
+  :init (load-theme 'vim-colors t))
+
+;; Font
+(set-face-attribute 'default nil
+                    :family "Fira Mono"
+                    :height 160
+                    :weight 'normal
+                    :width 'normal)
+
 ;; Line numbers
 (setq linum-format "%d ")
 (setq-default left-fringe-width  5)
@@ -22,15 +34,8 @@
   :ensure t
   :config (hlinum-activate))
 
-;; Theming
-(use-package color-theme-modern
+(use-package dimmer
   :ensure t
-  :init (load-theme 'vim-colors t))
-
-;; Font
-(set-face-attribute 'default nil
-                    :family "Fira Mono"
-                    :height 160
-                    :weight 'normal
-                    :width 'normal)
-
+  :init
+  (setq dimmer-fraction 0.5)
+  :config (dimmer-mode))
