@@ -47,4 +47,6 @@ for p in $uninstalled_plugins; do
     asdf plugin-add "$p"
 done;
 
+export JAVA_HOME=$(asdf where java)
+
 [ -f ~/.localrc ] && . ~/.localrc
