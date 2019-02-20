@@ -27,20 +27,42 @@
   :ensure t
   :config (evil-collection-init))
 
+(use-package dash
+  :ensure t)
+
+(use-package s
+  :ensure t)
+
+(use-package origami
+  :ensure t
+  :config (global-origami-mode))
+
 (use-package projectile
   :ensure t
   :general
   (:states 'normal
    :keymaps 'override
    "C-p" 'projectile-command-map)
-  :init
-  (setq projectile-completion-system 'ivy)
+  :init (setq projectile-completion-system 'ivy)
   :config (projectile-mode +1))
 
 (use-package ivy
   :ensure t
+  :init (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
   :config (ivy-mode 1))
 
 (use-package counsel
+  :after ivy
   :ensure t
   :config (counsel-mode 1))
+
+(use-package clojure-mode
+  :ensure t)
+
+(use-package cider
+  :ensure t)
+
+(use-package parinfer
+  :ensure t
+  :init (parinfer-mode))
+

@@ -39,3 +39,7 @@
   :init
   (setq dimmer-fraction 0.5)
   :config (dimmer-mode))
+
+(use-package focus
+  :ensure t
+  :config (focus-mode))

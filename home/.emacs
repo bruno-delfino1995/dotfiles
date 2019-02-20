@@ -35,7 +35,7 @@
      ("???" . "#dc752f"))))
  '(package-selected-packages
    (quote
-    (counsel projectile dimmer general color-theme-modern github-theme gandalf-theme spacemacs-theme hlinum linum-relative evil-collection evil goto-chg undo-tree use-package)))
+    (parinfer beacon focus cider clojure-mode origami helm-projectile helm counsel projectile dimmer general color-theme-modern github-theme gandalf-theme spacemacs-theme hlinum linum-relative evil-collection evil goto-chg undo-tree use-package)))
  '(pdf-view-midnight-colors (quote ("#655370" . "#fbf8ef"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
