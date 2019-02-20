@@ -21,7 +21,7 @@ link_file() {
   success "linked $1 to $2"
 }
 
-find -H "${DOTFILES_ROOT}/home" -maxdepth 3 |
+find -H "${DOTFILES_ROOT}/home" -maxdepth 5 |
   while read -r src; do
     if [[ -f $src ]]; then
       path=${src#"${DOTFILES_ROOT}/home"/}
