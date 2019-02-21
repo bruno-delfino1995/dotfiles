@@ -7,6 +7,11 @@
 (use-package goto-chg
   :ensure t)
 
+(defun write-kill ()
+  (interactive)
+  (save-buffer)
+  (kill-current-buffer))
+
 (use-package evil
   :ensure t
   :init
@@ -14,7 +19,9 @@
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
   :config
-  (evil-mode 1))
+  (evil-mode 1)
+  (evil-ex-define-cmd "k" 'kill-current-buffer)
+  (evil-ex-define-cmd "wk" 'write-kill))
 
 (use-package evil-surround
   :after evil
