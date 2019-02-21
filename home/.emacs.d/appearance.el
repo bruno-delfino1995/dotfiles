@@ -43,3 +43,8 @@
 (use-package focus
   :ensure t
   :config (focus-mode))
+
+(use-package fill-column-indicator
+  :ensure t
+  :config (fci-mode))
+
