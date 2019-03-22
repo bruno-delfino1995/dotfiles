@@ -20,9 +20,9 @@
                     :width 'normal)
 
 ;; Line numbers
-(setq linum-format "%d ")
-(setq-default left-fringe-width  5)
-(setq-default right-fringe-width  0)
+(setq linum-format "%d")
+(setq-default left-fringe-width 5)
+(setq-default right-fringe-width 0)
 
 (use-package linum-relative
   :ensure t
@@ -48,3 +48,15 @@
   :ensure t
   :config (fci-mode))
 
+;; Whitespaces
+(whitespace-mode)
+(set-face-attribute 'whitespace-space nil :background nil :foreground "lightgray")
+(set-face-attribute 'whitespace-hspace nil :background nil :foreground "lightgray")
+(set-face-attribute 'whitespace-tab nil :background nil :foreground "lightgray")
+(set-face-attribute 'whitespace-newline nil :background nil :foreground "lightgray")
+(set-face-attribute 'whitespace-trailing nil :background nil :foreground "lightgray")
+(set-face-attribute 'whitespace-line nil :background nil :foreground "lightgray")
+(set-face-attribute 'whitespace-space-before-tab nil :background nil :foreground "lightgray")
+(set-face-attribute 'whitespace-indentation nil :background nil :foreground "lightgray")
+(set-face-attribute 'whitespace-empty nil :background nil :foreground "lightgray")
+(set-face-attribute 'whitespace-space-after-tab nil :background nil :foreground "lightgray")
