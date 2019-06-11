@@ -14,39 +14,11 @@ colors
 promptinit
 # End of lines added by compinstall
 
-# Start X Server
-if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
-	exec startx
-fi
-
 # Aliases
-if [ -e ~/.zshrc.aliases ] ; then
-   source ~/.zshrc.aliases
-fi
+[ -e ~/.zshrc.aliases ] && source ~/.zshrc.aliases
 
 # Plugins
-if [ -e ~/.cache/zsh/.zshrc.plugins ]; then
-    source ~/.cache/zsh/.zshrc.plugins
-else
-    mkdir -p ~/.cache/zsh
-    antibody bundle < ~/.zshrc.plugins > ~/.cache/zsh/.zshrc.plugins
-    source ~/.cache/zsh/.zshrc.plugins
-fi
+[ -e ~/.zshrc.plugins ] && source ~/.zshrc.plugins
 
-source ~/.asdf/asdf.sh
-source ~/.asdf/completions/asdf.bash
-
-plugins_to_install=$(sort ~/.asdfrc.plugins)
-installed_plugins=$(sort <(asdf plugin-list))
-uninstalled_plugins=$(diff --changed-group-format='%<' --unchanged-group-format='' \
-    <(echo $plugins_to_install) \
-    <(echo $installed_plugins)
-)
-
-for p in $uninstalled_plugins; do
-    asdf plugin-add "$p"
-done;
-
-export JAVA_HOME=$(asdf where java)
-
-[ -f ~/.localrc ] && . ~/.localrc
+# Secret stuff
+[ -e ~/.localrc ] && source ~/.localrc

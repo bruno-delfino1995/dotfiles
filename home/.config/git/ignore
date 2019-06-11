@@ -1,8 +1,9 @@
 # IDE
 .vscode
 
-# Environment variables
+# Environment setup
 .env
+.envrc
 
 # VIM
 *.swp

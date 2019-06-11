@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# Add npm binaries to path
-PATH=$(npm bin):$PATH
-
-eval $@

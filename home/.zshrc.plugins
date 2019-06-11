@@ -1,7 +1,24 @@
-robbyrussell/oh-my-zsh path:lib
-zsh-users/zsh-syntax-highlighting
-zsh-users/zsh-autosuggestions
-zsh-users/zsh-completions
-zsh-users/zsh-history-substring-search
-Tarrasch/zsh-bd
-halfo/lambda-mod-zsh-theme
+if [ -e ~/.cache/zsh/.zshrc.plugins ]; then
+  source ~/.cache/zsh/.zshrc.plugins
+else
+  mkdir -p ~/.cache/zsh
+  antibody bundle < ~/.zshrc.plugins > ~/.cache/zsh/.zshrc.plugins
+  source ~/.cache/zsh/.zshrc.plugins
+fi
+eval "$(direnv hook zsh)"
+
+source ~/.asdf/asdf.sh
+source ~/.asdf/completions/asdf.bash
+
+plugins_to_install=$(sort ~/.asdfrc.plugins)
+installed_plugins=$(sort <(asdf plugin-list))
+uninstalled_plugins=$(diff --changed-group-format='%<' --unchanged-group-format='' \
+  <(echo $plugins_to_install) \
+  <(echo $installed_plugins)
+)
+
+for p in $uninstalled_plugins; do
+  asdf plugin-add "$p"
+done;
+
+export JAVA_HOME=$(asdf where java)
