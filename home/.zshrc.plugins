@@ -1,12 +1,16 @@
-if [ -e ~/.cache/zsh/.zshrc.plugins ]; then
-  source ~/.cache/zsh/.zshrc.plugins
-else
-  mkdir -p ~/.cache/zsh
-  antibody bundle < ~/.zshrc.plugins > ~/.cache/zsh/.zshrc.plugins
-  source ~/.cache/zsh/.zshrc.plugins
-fi
+# Direnv
 eval "$(direnv hook zsh)"
 
+# Antibody
+if [ -e ~/.cache/zsh/.antibody.plugins ]; then
+  source ~/.cache/zsh/.antibody.plugins
+else
+  mkdir -p ~/.cache/zsh
+  antibody bundle < ~/.antibody.plugins > ~/.cache/zsh/.antibody.plugins
+  source ~/.cache/zsh/.antibody.plugins
+fi
+
+# ASDF
 source ~/.asdf/asdf.sh
 source ~/.asdf/completions/asdf.bash
 

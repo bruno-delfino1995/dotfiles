@@ -1,14 +1,8 @@
+# Trick to run aliases with sudo
+alias sudo='sudo '
 alias ls='ls --color=auto'
 
-alias pacrepo='reflector -l 20 -f 10 --save /etc/pacman.d/mirrorlist'
+alias pacrepo='reflector --protocol https --age 48 --latest 100 --fastest 50 --save /etc/pacman.d/mirrorlist'
 alias pacu='pacman -Syu --noconfirm'
 alias yayu='yay -Syua --noconfirm'
 alias se='ls /usr/bin | grep'
-
-export QT_STYLE_OVERRIDE=gtk
-export QT_SELECT=qt5
-
-if [[ $LANG = '' ]]; then
-  export LANG=en_US.UTF-8
-fi
-
