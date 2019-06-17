@@ -20,3 +20,5 @@
   rebase = true
 [commit]
   gpgsign = true
+[push]
+  default = simple
