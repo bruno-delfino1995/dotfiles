@@ -2,6 +2,7 @@
 .vscode
 
 # Environment setup
+.tool-versions
 .env
 .envrc
 
