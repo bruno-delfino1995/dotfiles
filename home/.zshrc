@@ -2,6 +2,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+setopt HIST_IGNORE_SPACE
 bindkey -e
 
 # Completion
