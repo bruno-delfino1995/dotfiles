@@ -16,9 +16,15 @@
   renew = "!f() { git checkout master; git remote --delete origin $1; git branch -D $1; git checkout -b $1; git push -u origin $1; }; f"
   refresh = "!f() { git checkout master; git branch -D $1; git fetch origin $1; git checkout $1; }; f"
   remove-gone = "!f() { git branch -D `git branch -v | grep '\\[gone\\]' | awk '{print($1)}'`; }; f"
+	oldest-ancestor = !zsh -c 'diff -u <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | sed -ne \"s/^ //p\" | head -1' -
+	conflicts = diff --name-only --diff-filter=U
 [pull]
   rebase = true
 [commit]
   gpgsign = true
 [push]
   default = simple
+[rerere]
+	enabled = true
+[merge]
+	conflictstyle = diff3
