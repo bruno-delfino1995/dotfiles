@@ -2,28 +2,28 @@
 	email = bruno.delfino1995@gmail.com
 	name = Bruno Felipe Leal Delfino
 [core]
-  editor = vim
+	editor = vim
 [alias]
-  please = push --force-with-lease
-  commend = commit --amend --no-edit
-  it = !git init && git commit -m \"Initial commit\" --allow-empty
-  grog = log --graph --decorate --format=format:\"%C(bold blue)%h%C(bold yellow)%d%n%C(white)%s%n%C(white)%an at %C(bold green)(%ar)%n\"
-  merc = merge --no-ff
-  shorty = status --short --branch
-  unstage = reset HEAD
-  last = log -1 HEAD
-  slog = log --oneline
-  renew = "!f() { git checkout master; git remote --delete origin $1; git branch -D $1; git checkout -b $1; git push -u origin $1; }; f"
-  refresh = "!f() { git checkout master; git branch -D $1; git fetch origin $1; git checkout $1; }; f"
-  remove-gone = "!f() { git branch -D `git branch -v | grep '\\[gone\\]' | awk '{print($1)}'`; }; f"
+	please = push --force-with-lease
+	commend = commit --amend --no-edit
+	it = !git init && git commit -m \"Initial commit\" --allow-empty
+	grog = log --graph --decorate --format=format:\"%C(bold blue)%h%C(bold yellow)%d%n%C(white)%s%n%C(white)%an at %C(bold green)(%ar)%n\"
+	merc = merge --no-ff
+	shorty = status --short --branch
+	unstage = reset HEAD
+	last = log -1 HEAD
+	slog = log --oneline
+	renew = "!f() { git checkout master; git remote --delete origin $1; git branch -D $1; git checkout -b $1; git push -u origin $1; }; f"
+	refresh = "!f() { git checkout master; git branch -D $1; git fetch origin $1; git checkout $1; }; f"
+	remove-gone = "!f() { git branch -D `git branch -v | grep '\\[gone\\]' | awk '{print($1)}'`; }; f"
 	oldest-ancestor = !zsh -c 'diff -u <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | sed -ne \"s/^ //p\" | head -1' -
 	conflicts = diff --name-only --diff-filter=U
 [pull]
-  rebase = true
+	rebase = true
 [commit]
-  gpgsign = true
+	gpgsign = true
 [push]
-  default = simple
+	default = simple
 [rerere]
 	enabled = true
 [merge]
