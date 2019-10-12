@@ -6,9 +6,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kien/ctrlp.vim'
-Plug 'vim-syntastic/syntastic'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 
 call plug#end()
 
@@ -68,18 +65,4 @@ inoremap <S-Tab> <C-d>
 nnoremap <C-Tab> gt
 nnoremap <C-S-Tab> gT
 inoremap jj <Esc>
-
-"
-" Syntastic Config
-"
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe = 'npm-do eslint'
 
