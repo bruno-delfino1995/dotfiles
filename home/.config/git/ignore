@@ -9,8 +9,11 @@
 # VIM
 *.swp
 
-### IntelliJ IDEA ###
+# IntelliJ IDEA
 .idea
 *.iws
 *.iml
 *.ipr
+
+# Language Server
+.elixir_ls
