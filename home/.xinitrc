@@ -1,2 +1,5 @@
-exec i3
-pulseaudio -D
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+
+exec bspwm
+

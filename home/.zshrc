@@ -1,3 +1,8 @@
+# Start X Server
+if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
+  exec startx
+fi
+
 # Config
 HISTFILE=~/.histfile
 HISTSIZE=1000
