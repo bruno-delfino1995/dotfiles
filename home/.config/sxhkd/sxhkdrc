@@ -23,14 +23,14 @@ super + Escape
 # audio controls
 #
 
-super + XF86AudioRaiseVolume
-	exec --no-startup-id "amixer -D pulse sset Master 5%+"
+XF86AudioRaiseVolume
+	amixer -D pulse sset Master 5%+
 
-super + XF86AudioLowerVolume
-	exec --no-startup-id "amixer -D pulse sset Master 5%-"
+XF86AudioLowerVolume
+	amixer -D pulse sset Master 5%-
 
-super + XF86AudioMute
-	exec --no-startup-id "amixer -D pulse sset Master toggle"
+XF86AudioMute
+	amixer -D pulse sset Master toggle
 
 #
 # media player controls
@@ -101,9 +101,12 @@ super + {_,shift + }c
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
-# focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
+# focus the last local node
+super + Tab
+	bspc node -f last.local
+
+alt + {_,shift + }Tab
+	bspc node -f {next,previous}.local
 
 # focus the older or newer node in the focus history
 super + {o,i}
@@ -150,3 +153,4 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
