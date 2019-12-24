@@ -1,5 +1,5 @@
-#!/bin/sh
-DIR=$(readlink -f `dirname "$0"`)
+#!/bin/bash
+DIR=$(readlink -f "$(dirname "$0")")
 DOTFILES_ROOT=$(dirname "$DIR")
 
 success() {
@@ -25,8 +25,8 @@ find -H "${DOTFILES_ROOT}/home" -maxdepth 5 |
   while read -r src; do
     if [[ -f $src ]]; then
       path=${src#"${DOTFILES_ROOT}/home"/}
-      dst="$HOME/"${path}""
-      mkdir -p $(dirname "$dst")
+      dst="$HOME/${path}"
+      mkdir -p "$(dirname "$dst")"
       link_file "$src" "$dst"
     fi
   done

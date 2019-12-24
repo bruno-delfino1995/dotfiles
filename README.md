@@ -11,7 +11,16 @@ Run this:
 cd ~
 git clone <repository> .dotfiles
 cd ~/.dotfiles
-script/install-home
+./script/install
 ```
 
 This will symlink the appropriate files in `.dotfiles`.
+
+## Uninstall
+
+In case you're tired of the current config:
+
+```sh
+cd ~/.dotfiles
+./scripts/uninstall
+```
