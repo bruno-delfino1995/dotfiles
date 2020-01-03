@@ -1,10 +1,16 @@
 " load plugins
 call plug#begin('~/.vim/plugged')
 
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
+
+Plug 'sheerun/vim-polyglot'
+Plug 'sainnhe/edge'
 
 call plug#end()
 
@@ -72,6 +78,13 @@ set smartcase                   " ... but not when search pattern contains upper
 "
 set nocursorcolumn
 set nocursorline
+
+"
+" coloring
+"
+set termguicolors
+set background=dark
+colorscheme edge
 
 "
 " key mappings
