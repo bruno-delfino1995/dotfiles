@@ -15,5 +15,9 @@
 *.iml
 *.ipr
 
-# Language Server
+# Elixir LS
 .elixir_ls
+
+# Scala LS
+.metals
+.bloop

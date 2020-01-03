@@ -33,3 +33,5 @@
 	conflictstyle = diff3
 [tag]
 	gpgsign = true
+[rebase]
+	autoSquash = true
