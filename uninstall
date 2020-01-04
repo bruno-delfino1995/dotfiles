@@ -1,11 +1,17 @@
 #!/bin/bash
 DIR=$(readlink -f "$(dirname "$0")")
-PROJECT_ROOT=$DIR
+INSTALLATION="$HOME/.dfiles"
+BRANCH="installation"
 
-cd "$PROJECT_ROOT" || exit 1
-git switch installation
+# cd "$INSTALLATION" || exit 1
+cd "$DIR" || exit 1
 
 for d in $(ls -d */); do
   dir=$(echo "$d" | head -c -2)
   stow -t "$HOME" -D "$dir"
 done
+
+cd "$DIR" || exit 1
+
+git worktree remove "$INSTALLATION" && rm -rf "$INSTALLATION"
+
