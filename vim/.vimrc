@@ -84,6 +84,7 @@ set nocursorline
 "
 set termguicolors
 set background=dark
+let g:edge_transparent_background = 1
 colorscheme edge
 
 "
@@ -93,4 +94,5 @@ nnoremap <Space> :nohl<CR>
 inoremap <S-Tab> <C-d>
 nnoremap <C-Tab> gt
 nnoremap <C-S-Tab> gT
+nnoremap <C-R> :source ~/.vimrc<CR>
 
