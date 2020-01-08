@@ -39,10 +39,12 @@
 
 ! Rofi
 rofi.font: Fira Mono 12
-rofi.padding: 20
+rofi.padding: 10
 rofi.line-padding: 2
 rofi.color-enabled: true
 rofi.hide-scrollbar: true
 rofi.separator-style: solid
-! State: 'bg', 'fg', 'bgalt', 'hlbg', 'hlfg'
+! 'bg', 'border', 'bgalt'
+rofi.color-window: black, grey, black
+! 'bg', 'fg', 'bgalt', 'hlbg', 'hlfg'
 rofi.color-normal: black, white, black, grey, #ffffff
