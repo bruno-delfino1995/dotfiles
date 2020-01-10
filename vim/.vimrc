@@ -29,7 +29,7 @@ set relativenumber                " Show line numbers relative to cursor positio
 set backspace=indent,eol,start    " Makes backspace key more powerful.
 set showcmd                       " Show me what I'm typing
 set showmode                      " Show current mode.
-set clipboard=unnamed,unnamedplus " Use X11 Clipboard
+set clipboard=unnamedplus         " Use X11 Clipboard
 set nowrap                        " Do not wrap long lines
 set autoread                      " Automatically reread changed files without asking me anything
 set fileformats=unix,dos,mac      " Prefer Unix over Windows over OS 9 formats
