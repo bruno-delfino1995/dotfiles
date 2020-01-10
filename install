@@ -9,8 +9,12 @@ git branch "$BRANCH" 2> /dev/null
 git worktree add "$INSTALLATION" "$BRANCH"
 cd "$INSTALLATION" || exit 1
 
-for d in $(ls -d */); do
-  dir=$(echo "$d" | head -c -2)
-  stow -t "$HOME" -S "$dir"
+for dir in $(ls -d */); do
+  package=$(echo "$dir" | head -c -2)
+  package_dirs=$(find "$package" ! -path "$package" -type d | sed "s|^$package/|$HOME/|" | uniq | sort)
+  if [[ -n "$package_dirs" ]]; then
+    echo $package_dirs | xargs mkdir -p
+  fi
+  stow -t "$HOME" -S "$package"
 done
 
