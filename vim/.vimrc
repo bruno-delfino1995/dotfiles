@@ -94,5 +94,4 @@ nnoremap <Space> :nohl<CR>
 inoremap <S-Tab> <C-d>
 nnoremap <C-Tab> gt
 nnoremap <C-S-Tab> gT
-nnoremap <C-R> :source ~/.vimrc<CR>
-
+nnoremap <silent> <F5> :source ~/.vimrc<CR>
