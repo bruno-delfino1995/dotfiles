@@ -9,7 +9,7 @@ super + Return
 # screen locking
 super + d
   playerctl pause; \
-  i3lock --color '#000000'
+  lock
 
 # program launcher
 super + @space
