@@ -53,6 +53,10 @@ XF86AudioPrev
 super + alt + {q,r}
 	bspc {quit,wm -r}
 
+# rotate noder 90 degrees
+super + r
+	bspc node @/ -R 90
+
 # close and kill
 super + {_,shift + }q
 	bspc node -{c,k}
