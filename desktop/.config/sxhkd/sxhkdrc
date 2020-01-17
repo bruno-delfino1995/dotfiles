@@ -13,7 +13,7 @@ super + d
 
 # program launcher
 super + @space
-	rofi -show drun
+	rofi -show drun -m $(bspc query -M -m --names)
 
 # make sxhkd reload its configuration files:
 super + Escape
