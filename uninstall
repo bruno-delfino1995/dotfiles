@@ -3,8 +3,7 @@ DIR=$(readlink -f "$(dirname "$0")")
 INSTALLATION="$HOME/.dfiles"
 BRANCH="installation"
 
-# cd "$INSTALLATION" || exit 1
-cd "$DIR" || exit 1
+cd "$INSTALLATION" || exit 1
 
 for d in $(ls -d */); do
   dir=$(echo "$d" | head -c -2)
