@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 i3lock \
     --color='#282828' \
     --insidecolor='#282828FF' \
@@ -16,8 +17,8 @@ i3lock \
     --layoutcolor='#00000000' \
     --timecolor='#EBDBB2FF' \
     --datecolor='#00000000' \
-    --indpos='x+100:y+100' \
-    --timepos='x+140:y+112' \
+    --indpos='x+100:h-100' \
+    --timepos='ix+(r+20):iy+12' \
     --time-align=1 \
     --timestr='%H:%M' \
     --time-font='Fira Mono' \
