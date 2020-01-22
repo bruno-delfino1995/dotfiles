@@ -1,0 +1,26 @@
+#!/bin/sh
+
+function closewm () {
+  for w in $(bspc query -N -n); do
+    wmctrl -i -c "$w"
+  done
+}
+
+function endsession () {
+  bspc quit
+}
+
+function reloadsession () {
+  bspc wm -r
+}
+
+ANS=$(echo "Lock|Logout|Reload|Reboot|Shutdown" | \
+    rofi -sep "|" -dmenu -i -p 'System' "" -width 20 \
+    -hide-scrollbar -eh 1 -line-padding 4 -padding 20 -lines 5)
+case "$ANS" in
+    *Lock) de-lock ;;
+    *Logout) closewm; endsession ;;
+    *Reload) reloadsession ;;
+    *Reboot) closewm; systemctl -i reboot ;;
+    *Shutdown) closewm; systemctl -i poweroff
+esac

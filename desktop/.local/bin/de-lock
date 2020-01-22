@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+playerctl pause
+
 i3lock \
     --color='#282828' \
     --insidecolor='#282828FF' \
