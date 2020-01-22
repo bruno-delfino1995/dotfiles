@@ -154,3 +154,18 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
+
+#
+# desktop utilities
+#
+
+# printscreen
+ctrl + Print
+	maim -f png -u -m 1 -s | xclip -t image/png -in -sel c
+
+alt + Print
+	maim -f png -u -m 1 -i $(xdotool getwindowfocus) | xclip -t image/png -in -sel c
+
+Print
+	maim -f png -u -m 1 | xclip -t image/png -in -sel c
+
