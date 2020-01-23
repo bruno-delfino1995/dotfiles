@@ -14,7 +14,7 @@ function reloadsession () {
   bspc wm -r
 }
 
-ANS=$(echo "Lock|Clear|Logout|Reload|Reboot|Shutdown" | \
+ANS=$(echo "Lock|Clear|Reload|Logout|Reboot|Shutdown" | \
     rofi -sep "|" -dmenu -i -p 'System' "" -width 20 \
     -hide-scrollbar -eh 1 -line-padding 4 -padding 20 -lines 4)
 case "$ANS" in

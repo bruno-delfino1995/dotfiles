@@ -11,7 +11,7 @@ redshift -P -O 5000
 
 xset s on
 xset s 600
-xss-lock lock &
+xss-lock de-lock &
 
 clipster -d &
 sxhkd &
