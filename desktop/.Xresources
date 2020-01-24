@@ -2,14 +2,3 @@
 Xcursor.theme: Breeze_Snow
 Xcursor.size: 16
 
-! Rofi
-rofi.font: Fira Mono 12
-rofi.padding: 10
-rofi.line-padding: 2
-rofi.color-enabled: true
-rofi.hide-scrollbar: true
-rofi.separator-style: solid
-! 'bg', 'border', 'bgalt'
-rofi.color-window: #262729, #88909f, #262729
-! 'bg', 'fg', 'bgalt', 'hlbg', 'hlfg'
-rofi.color-normal: #262729, #bcc4d1, #262729, #88909f, #ffffff
