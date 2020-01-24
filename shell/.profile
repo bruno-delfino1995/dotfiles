@@ -12,6 +12,7 @@ export FILE="ranger"
 export FZF_BASE="/usr/local/opt/fzf"
 export FZF_DEFAULT_OPTS="--layout=default --height 40%"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_ALT_C_COMMAND='fd --type d --max-depth 3'
 
 export QT_STYLE_OVERRIDE=gtk
 export QT_SELECT=qt5
