@@ -1,8 +1,9 @@
 # Trick to run aliases with sudo
 alias sudo='sudo '
 alias ls='ls --color=auto'
+alias se='ls /usr/bin | grep'
 
 alias pacrepo='reflector --protocol https --age 48 --latest 100 --fastest 50 --save /etc/pacman.d/mirrorlist'
 alias pacu='pacman -Syu --noconfirm'
 alias yayu='yay -Syua --noconfirm'
-alias se='ls /usr/bin | grep'
+alias pacls="pacman -Qqe | fzf -m --preview 'pacman -Qi {1}' > /dev/null"
