@@ -8,7 +8,10 @@ export BROWSER="firefox"
 export READER="zathura"
 export FILE="ranger"
 
+# FZF
 export FZF_BASE="/usr/local/opt/fzf"
+export FZF_DEFAULT_OPTS="--layout=default --height 40%"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 export QT_STYLE_OVERRIDE=gtk
 export QT_SELECT=qt5
