@@ -1,43 +1,3 @@
-! Author:     Sainnhepark
-! Email:      sainnhe@gmail.com
-! URL:        https://github.com/sainnhe/edge/
-! License:    MIT && Anti-996
-
-! Color Theme
-#define white #bcc4d1
-#define black #262729
-#define grey #88909f
-#define red #f07e7e
-#define green #a3bc8d
-#define cyan #78b7b1
-#define yellow #d1b277
-#define blue #7ab3e1
-#define magenta #d898eb
-
-! Color Theme
-*.foreground:   white
-*.background:   black
-*.cursorColor:  white
-*fading: 35
-*fadeColor: grey
-
-*.color0: grey
-*.color1: red
-*.color2: green
-*.color3: yellow
-*.color4: blue
-*.color5: magenta
-*.color6: cyan
-*.color7: white
-*.color8: grey
-*.color9: red
-*.color10: green
-*.color11: yellow
-*.color12: blue
-*.color13: magenta
-*.color14: cyan
-*.color15: white
-
 ! Cursor Theme
 Xcursor.theme: Breeze_Snow
 Xcursor.size: 16
@@ -50,6 +10,6 @@ rofi.color-enabled: true
 rofi.hide-scrollbar: true
 rofi.separator-style: solid
 ! 'bg', 'border', 'bgalt'
-rofi.color-window: black, grey, black
+rofi.color-window: #262729, #88909f, #262729
 ! 'bg', 'fg', 'bgalt', 'hlbg', 'hlfg'
-rofi.color-normal: black, white, black, grey, #ffffff
+rofi.color-normal: #262729, #bcc4d1, #262729, #88909f, #ffffff

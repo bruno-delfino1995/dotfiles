@@ -1,21 +1,6 @@
-xrandr --auto
+#!/bin/sh
 
-autorandr --change
-
-xrdb -I$HOME ~/.Xresources
-
-xsetroot -cursor_name left_ptr
-hsetroot -solid '#262729'
-
-redshift -P -O 5000
-
-xset s on
-xset s 600
-xss-lock de-lock &
-
-clipster -d &
-sxhkd &
-picom &
+[ -f ~/.xprofile ] && . ~/.xprofile
 
 exec bspwm
 
