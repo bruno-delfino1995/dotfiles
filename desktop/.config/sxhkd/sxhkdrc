@@ -8,7 +8,7 @@ super + Return
 
 # screen locking
 super + d
-	de-lock
+	loginctl lock-session
 
 # logout dialog
 super + e
@@ -19,7 +19,7 @@ super + c
 
 # program launcher
 super + @space
-	rofi -show drun -m $(bspc query -M -m --names)
+	rofi -modi window,drun -show drun -show-icons -m $(bspc query -M -m --names)
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -107,12 +107,9 @@ super + {_,shift + }c
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
-# focus the last local node
-super + Tab
-	bspc node -f last.local
-
+# focus the last and prev local node
 alt + {_,shift + }Tab
-	bspc node -f {next,previous}.local
+	bspc node -f {next,prev}.local
 
 # focus the older or newer node in the focus history
 super + {o,i}
