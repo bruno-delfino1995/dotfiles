@@ -2,8 +2,6 @@
 	email = bruno.delfino1995@gmail.com
 	name = Bruno Felipe Leal Delfino
 	signingkey = 69755601B3AFF040439A1BB1F4EF91F02AACA9DF
-[core]
-	editor = vim
 [alias]
 	please = push --force-with-lease
 	commend = commit --amend --no-edit

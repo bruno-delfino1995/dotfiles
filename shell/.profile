@@ -2,7 +2,7 @@ export LANG=en_US.UTF-8
 export XDG_CONFIG_HOME=$HOME/.config
 
 # Default programs:
-export EDITOR="vim"
+export EDITOR="nvim"
 export TERMINAL="urxvt"
 export BROWSER="firefox"
 export READER="zathura"
