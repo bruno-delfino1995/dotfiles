@@ -3,7 +3,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 # Default programs:
 export EDITOR="vim"
-export TERMINAL="alacritty"
+export TERMINAL="urxvt"
 export BROWSER="firefox"
 export READER="zathura"
 export FILE="ranger"
