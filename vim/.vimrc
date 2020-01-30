@@ -3,12 +3,14 @@ call plug#begin('~/.vim/plugged')
 
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-flagship'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-commentary'
+Plug 'junegunn/vim-easy-align'
 Plug 'editorconfig/editorconfig-vim'
-
 Plug 'sheerun/vim-polyglot'
 Plug 'sainnhe/edge'
 
@@ -34,6 +36,7 @@ set nowrap                        " Do not wrap long lines
 set autoread                      " Automatically reread changed files without asking me anything
 set fileformats=unix,dos,mac      " Prefer Unix over Windows over OS 9 formats
 set laststatus=2                  " Controls whether to show the bottom status line
+set showtabline=2                 " Always shows tab line independent of having more than one
 set ttyfast                       " Improves performance of redrawing by signalizing a fast terminal connection
 set wildmenu                      " Show a menu for tab completion
 
@@ -93,5 +96,10 @@ colorscheme edge
 nnoremap <Space> :nohl<CR>
 inoremap <S-Tab> <C-d>
 nnoremap <C-Tab> gt
-nnoremap <C-S-Tab> gT
 nnoremap <silent> <F5> :source ~/.vimrc<CR>
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
