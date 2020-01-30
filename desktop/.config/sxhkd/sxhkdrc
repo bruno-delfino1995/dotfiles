@@ -108,7 +108,7 @@ super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
 # focus the last and prev local node
-alt + {_,shift + }Tab
+super + {_,shift + }Tab
 	bspc node -f {next,prev}.local
 
 # focus the older or newer node in the focus history
