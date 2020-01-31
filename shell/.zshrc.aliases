@@ -7,3 +7,5 @@ alias pacrepo='reflector --protocol https --age 48 --latest 100 --fastest 50 --s
 alias pacu='pacman -Syu --noconfirm'
 alias yayu='yay -Syua --noconfirm'
 alias pacls="pacman -Qqe | fzf -m --preview 'pacman -Qi {1}' > /dev/null"
+
+alias vim='nvim'
