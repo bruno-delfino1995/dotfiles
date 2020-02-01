@@ -14,5 +14,6 @@ URxvt*urgentOnBell: true
 URxvt*cursorBlink: true
 URxvt*depth: 32
 URxvt.background: [90]#262729
+URxvt*fading: 0
 
 URxvt.internalBorder: 8
