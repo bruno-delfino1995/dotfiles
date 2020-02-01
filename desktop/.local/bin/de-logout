@@ -15,7 +15,7 @@ function reloadsession () {
 }
 
 ANS=$(echo "Lock|Clear|Reload|Suspend|Logout|Reboot|Shutdown" | \
-    rofi -sep "|" -dmenu -i -p 'System' "" -width 20 \
+    rofi -sep "|" -dmenu -i -p 'system:' "" -width 20 \
     -hide-scrollbar -eh 1 -line-padding 4 -padding 20 -lines 4)
 case "$ANS" in
     *Lock) de-lock ;;
