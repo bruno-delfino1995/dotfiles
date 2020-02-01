@@ -65,11 +65,11 @@ configuration {
 /*	matching-negate-char: '-' /* unsupported */;*/
 /*	cache-dir: ;*/
 /*	pid: "/run/user/1000/rofi.pid";*/
-	display-window: "Focus";
+	display-window: "focus:";
 /*	display-windowcd: ;*/
-	display-run: "Run";
-	display-ssh: "Connect";
-	display-drun: "Launch";
+	display-run: "run:";
+	display-ssh: "connect:";
+	display-drun: "launch:";
 /*	display-combi: ;*/
 /*	display-keys: ;*/
 /*	kb-primary-paste: "Control+V,Shift+Insert";*/
@@ -278,7 +278,7 @@ configuration {
 }
 #textbox-prompt-colon {
     expand:     false;
-    str:        ":";
+    str:        "";
     margin:     0px 0.3em 0em 0em ;
     text-color: @normal-foreground;
 }

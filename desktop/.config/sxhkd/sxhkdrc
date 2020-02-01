@@ -15,7 +15,7 @@ super + e
 	de-logout
 
 super + c
-	clipboard
+	roficlip
 
 # program launcher
 super + @space
@@ -50,6 +50,14 @@ XF86AudioNext
 
 XF86AudioPrev
 	playerctl previous
+
+#
+# applications
+#
+
+XF86Calculator
+	rofi -show calc -modi calc -no-show-match -no-sort -no-history \
+		-calc-command "echo '{result}' | xclip"
 
 #
 # bspwm hotkeys
