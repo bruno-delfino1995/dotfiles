@@ -5,8 +5,11 @@ BRANCH="installation"
 
 cd "$DIR" || exit 1
 
-git branch "$BRANCH" 2> /dev/null
-git worktree add "$INSTALLATION" "$BRANCH"
+if git show-ref --verify --quiet refs/heads/$BRANCH; then
+  git branch "$BRANCH" > /dev/null 2> /dev/null
+  git worktree add "$INSTALLATION" "$BRANCH" > /dev/null 2> /dev/null
+fi
+
 cd "$INSTALLATION" || exit 1
 
 for dir in $(ls -d */); do
