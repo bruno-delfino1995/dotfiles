@@ -2,22 +2,48 @@
 DIR=$(readlink -f "$(dirname "$0")")
 INSTALLATION="$HOME/.dfiles"
 BRANCH="installation"
+COLORSCHEME="$1"
+
+if [[ -z "$COLORSCHEME" ]]; then
+  echo "Select a file under \`colorschemes\` and pass it as first argument"
+  exit 1
+fi
 
 cd "$DIR" || exit 1
 
-if git show-ref --verify --quiet refs/heads/$BRANCH; then
-  git branch "$BRANCH" > /dev/null 2> /dev/null
-  git worktree add "$INSTALLATION" "$BRANCH" > /dev/null 2> /dev/null
-fi
-
-cd "$INSTALLATION" || exit 1
-
-for dir in $(ls -d */); do
-  package=$(echo "$dir" | head -c -2)
-  package_dirs=$(find "$package" ! -path "$package" -type d | sed "s|^$package/|$HOME/|" | uniq | sort)
-  if [[ -n "$package_dirs" ]]; then
-    echo $package_dirs | xargs mkdir -p
+function setup_local_installation() {
+  if git show-ref --verify --quiet refs/heads/$BRANCH; then
+    git branch "$BRANCH" > /dev/null 2> /dev/null
+    git worktree add "$INSTALLATION" "$BRANCH" > /dev/null 2> /dev/null
   fi
-  stow -t "$HOME" -S "$package"
-done
+}
+
+function install_packages() {
+  cd "$INSTALLATION" || exit 1
+
+  for package in $(fd --type d --max-depth=1 --exclude "colorschemes"); do
+    package_dirs=$(fd -H --type d . "$package" | sed "s|^$package/|$HOME/|" | uniq | sort)
+    if [[ -n "$package_dirs" ]]; then
+      echo $package_dirs | xargs mkdir -p
+    fi
+    stow -t "$HOME" -S "$package"
+  done
+}
+
+
+function build_packages() {
+  cd "$INSTALLATION" || exit 1
+  data="$INSTALLATION/colorschemes/$COLORSCHEME.yml"
+
+  stat "$data" > /dev/null || exit 1
+
+  for template in $(fd -H -e mustache --exclude "colorschemes" .); do
+    target=$(echo "$template" | sed 's/.mustache$//')
+    mustache "$data" "$template" > "$target"
+  done
+}
+
+setup_local_installation
+build_packages
+install_packages
 

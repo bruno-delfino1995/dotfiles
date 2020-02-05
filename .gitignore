@@ -1,0 +1,6 @@
+colorschemes/*
+!colorschemes/.gitkeep
+
+# compiled
+desktop/.Xresources.d/colors
+
