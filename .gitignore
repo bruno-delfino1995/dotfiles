@@ -3,5 +3,5 @@ colorschemes/*
 
 # compiled
 desktop/.Xresources.d/colors
-term/.config/alacritty/alacritty.yml
+desktop/.config/alacritty/alacritty.yml
 
