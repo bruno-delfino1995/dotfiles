@@ -10,3 +10,4 @@ alias pacls="pacman -Qqe | fzf-tmux -m --preview 'pacman -Qi {1}' > /dev/null"
 alias pacunlock="rm /var/lib/pacman/db.lck"
 
 alias vim='nvim'
+alias vimdiff='nvim -d'
