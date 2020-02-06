@@ -33,13 +33,13 @@ function install_packages() {
 
 function build_packages() {
   cd "$INSTALLATION" || exit 1
-  data="$INSTALLATION/colorschemes/$COLORSCHEME.yml"
+  scheme="$INSTALLATION/colorschemes/$COLORSCHEME.yml"
 
-  stat "$data" > /dev/null || exit 1
+  stat "$scheme" > /dev/null || exit 1
 
   for template in $(fd -H -e mustache --exclude "colorschemes" .); do
     target=$(echo "$template" | sed 's/.mustache$//')
-    mustache "$data" "$template" > "$target"
+    ./colorscheme.rb "$scheme" | mustache - "$template" > "$target"
   done
 }
 

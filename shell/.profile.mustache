@@ -14,9 +14,9 @@ export FZF_DEFAULT_OPTS="--layout=default --height 40%"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_ALT_C_COMMAND='fd --type d --max-depth 3'
 export FZF_DEFAULT_OPTS="
-  --color=bg+:#{{base01}},bg:#{{base00}},spinner:#{{base0C}},hl:#{{base0D}}
-  --color=fg:#{{base04}},header:#{{base0D}},info:#{{base0A}},pointer:#{{base0C}}
-  --color=marker:#{{base0C}},fg+:#{{base06}},prompt:#{{base0A}},hl+:#{{base0D}}
+  --color=bg+:#{{base01-hex}},bg:#{{base00-hex}},spinner:#{{base0C-hex}},hl:#{{base0D-hex}}
+  --color=fg:#{{base04-hex}},header:#{{base0D-hex}},info:#{{base0A-hex}},pointer:#{{base0C-hex}}
+  --color=marker:#{{base0C-hex}},fg+:#{{base06-hex}},prompt:#{{base0A-hex}},hl+:#{{base0D-hex}}
 "
 
 export QT_STYLE_OVERRIDE=gtk
@@ -28,5 +28,6 @@ export QT_SCREEN_SCALE_FACTORS="1;1"
 export WINIT_HIDPI_FACTOR=1
 
 export GOPATH=$HOME/.go
+export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
 
-export PATH="$PATH:$HOME/.local/bin:$GOPATH/bin"
+export PATH="$PATH:$HOME/.local/bin:$GOPATH/bin:$GEM_HOME/bin"

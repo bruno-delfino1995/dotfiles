@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    chroma (0.2.0)
+    safe_yaml (1.0.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  chroma
+  safe_yaml
+
+BUNDLED WITH
+   2.1.4
