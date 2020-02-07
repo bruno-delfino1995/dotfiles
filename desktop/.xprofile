@@ -17,4 +17,5 @@ xss-lock de-lock &
 clipster -d &
 sxhkd &
 picom &
+dunst &
 

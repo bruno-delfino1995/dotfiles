@@ -8,4 +8,5 @@ desktop/.config/rofi/config.rasi
 shell/.profile
 nvim/.config/nvim/colors/base16.vim
 desktop/.config/zathura/zathurarc
+desktop/.config/dunst/dunstrc
 
