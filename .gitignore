@@ -6,4 +6,5 @@ desktop/.Xresources.d/colors
 desktop/.config/alacritty/alacritty.yml
 desktop/.config/rofi/config.rasi
 shell/.profile
+nvim/.config/nvim/colors/base16.vim
 

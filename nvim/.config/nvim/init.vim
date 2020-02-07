@@ -81,6 +81,11 @@ set nocursorcolumn
 set nocursorline
 
 "
+" add some colors
+"
+colorscheme base16
+
+"
 " key mappings
 "
 nnoremap <Space> :nohl<CR>
