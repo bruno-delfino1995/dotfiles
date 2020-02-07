@@ -92,6 +92,7 @@ nnoremap <Space> :nohl<CR>
 inoremap <S-Tab> <C-d>
 nnoremap <C-Tab> gt
 nnoremap <silent> <F5> :exe 'source '.stdpath('config').'/init.vim'<CR>
+nnoremap <C-p> :Files<CR>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
