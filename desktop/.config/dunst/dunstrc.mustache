@@ -1,5 +1,5 @@
 [global]
-font = San Francisco Display Regular 8
+font = Fira Mono 10
 
 # Allow a small subset of html markup:
 #   <b>bold</b>
@@ -24,7 +24,7 @@ markup = yes
 format = "<b>%s</b>\n%b"
 
 # Sort messages by urgency.
-sort = no
+sort = yes
 
 # Show how many messages are currently hidden (because of geometry).
 indicate_hidden = yes
@@ -33,7 +33,7 @@ indicate_hidden = yes
 # Possible values are "left", "center" and "right".
 alignment = left
 
-# The frequency with wich text that is longer than the notification
+# The frequency with which text that is longer than the notification
 # window allows bounces back and forth.
 # This option conflicts with "word_wrap".
 # Set to 0 to disable.
@@ -46,7 +46,11 @@ show_age_threshold = -1
 
 # Split notifications into multiple lines if they don't fit into
 # geometry.
-word_wrap = yes
+word_wrap = no
+
+# When word_wrap is set to no, specify where to ellipsize long lines.
+# Possible values are "start", "middle" and "end".
+ellipsize = end
 
 # Ignore newlines '\n' in notifications.
 ignore_newline = no
@@ -64,7 +68,7 @@ ignore_newline = no
 # the top and down respectevly.
 # The width can be negative.  In this case the actual width is the
 # screen width minus the width defined in within the geometry option.
-geometry = "300x5-50+50"
+geometry = "300x4-8+8"
 
 # Shrink window if it's smaller than the width.  Will be ignored if
 # width is 0.
@@ -74,15 +78,15 @@ shrink = no
 # This option will only work if a compositing windowmanager is
 # present (e.g. xcompmgr, compiz, etc.).
 #transparency = 15
-transparency = 8
+transparency = 0
 
 # Don't remove messages, if the user is idle (no mouse or keyboard input)
 # for longer than idle_threshold seconds.
 # Set to 0 to disable.
-idle_threshold = 0
+idle_threshold = 60
 
 # Which monitor should the notifications be displayed on.
-monitor = 0
+# monitor = 0
 
 # Display notification on focused monitor.  Possible modes are:
 #   mouse: follow mouse pointer
@@ -95,14 +99,14 @@ monitor = 0
 #
 # If this option is set to mouse or keyboard, the monitor option
 # will be ignored.
-follow = none
+follow = keyboard
 
 # Should a notification popped up from history be sticky or timeout
 # as if it would normally do.
 sticky_history = yes
 
 # Maximum amount of notifications kept in history
-history_length = 50
+history_length = 20
 
 # Display indicators for URLs (U) and actions (A).
 show_indicators = yes
@@ -112,16 +116,16 @@ show_indicators = yes
 # This adds empty space above and under the text.
 line_height = 0
 
-# Draw a line of "separatpr_height" pixel height between two
+# Draw a line of "separator_height" pixel height between two
 # notifications.
 # Set to 0 to disable.
 separator_height = 2
 
 # Padding between text and separator.
-padding = 16
+padding = 8
 
 # Horizontal padding.
-horizontal_padding = 16
+horizontal_padding = 8
 
 # Defines color of the frame around the notification window.
 #frame_color = "#171717"
@@ -137,7 +141,7 @@ separator_color = "#{{base05-hex}}"
 
 # Defines width in pixels of frame around the notification window.
 # Set to 0 to disable.
-frame_width = 1
+frame_width = 2
 
 # Print a notification on startup.
 # This is mainly for error detection, since dbus (re-)starts dunst
@@ -145,16 +149,19 @@ frame_width = 1
 startup_notification = false
 
 # dmenu path.
-dmenu = /usr/bin/dmenu -p dunst:
+# dmenu = /usr/bin/dmenu -p dunst:
 
 # Browser for opening urls in context menu.
-#browser = /usr/bin/qutebrowser
+# browser = /usr/bin/firefox
 
 # Align icons left/right/off
 icon_position = right
 
+# Scale larger icons down to this size, set to 0 to disable
+max_icon_size = 64
+
 # Paths to default icons.
-icon_path = /usr/share/icons/Numix/16/status/:/usr/share/icons/Numix/16/devices/
+icon_path = /usr/share/icons/Numix/22/status/:/usr/share/icons/Numix/22/devices/
 
 [shortcuts]
 
@@ -178,16 +185,19 @@ history = ctrl+grave
 context = ctrl+shift+period
 
 [urgency_low]
+    urgency = low
     background = "#{{base01-hex}}"
     foreground = "#{{base03-hex}}"
-    timeout = 15
+    timeout = 5
 
 [urgency_normal]
+    urgency = normal
     background = "#{{base02-hex}}"
     foreground = "#{{base05-hex}}"
-    timeout = 15
+    timeout = 10
 
 [urgency_critical]
+    urgency = critical
     background = "#{{base08-hex}}"
     foreground = "#{{base06-hex}}"
     timeout = 20
@@ -217,17 +227,12 @@ context = ctrl+shift+period
 #[espeak]
 #    summary = "*"
 #    script = dunst_espeak.sh
-
-[volume]
-summary = "volume notification"
-urgency = normal
-script = /usr/bin/volume.sh
-
+#
 #[ignore]
 #    # This notification will not be displayed
 #    summary = "foobar"
 #    format = ""
-
+#
 #[signed_on]
 #    appname = Pidgin
 #    summary = "*signed on*"
