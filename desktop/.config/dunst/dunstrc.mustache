@@ -86,7 +86,7 @@ transparency = 0
 idle_threshold = 60
 
 # Which monitor should the notifications be displayed on.
-# monitor = 0
+monitor = 0
 
 # Display notification on focused monitor.  Possible modes are:
 #   mouse: follow mouse pointer
@@ -162,6 +162,20 @@ max_icon_size = 64
 
 # Paths to default icons.
 icon_path = /usr/share/icons/Numix/22/status/:/usr/share/icons/Numix/22/devices/
+
+### mouse
+
+# Defines action of mouse event
+# Possible values are:
+# * none: Don't do anything.
+# * do_action: If the notification has exactly one action, or one is marked as default,
+#              invoke it. If there are multiple and no default, open the context menu.
+# * close_current: Close current notification.
+# * close_all: Close all notifications.
+mouse_left_click = close_current
+mouse_middle_click = do_action
+mouse_right_click = close_all
+
 
 [shortcuts]
 
