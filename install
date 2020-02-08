@@ -40,6 +40,7 @@ function build_packages() {
   for template in $(fd -H -e mustache --exclude "colorschemes" .); do
     target=$(echo "$template" | sed 's/.mustache$//')
     ./colorscheme.rb "$scheme" | mustache - "$template" > "$target"
+    chmod --reference="$template" "$target"
   done
 }
 

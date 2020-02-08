@@ -9,4 +9,5 @@ shell/.profile
 nvim/.config/nvim/colors/base16.vim
 desktop/.config/zathura/zathurarc
 desktop/.config/dunst/dunstrc
+desktop/.local/bin/de-lock
 

@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+playerctl pause
+
+background="{{base00-hex}}"
+foreground="{{base05-hex}}"
+wrong="{{base08-hex}}"
+verif="{{base04-hex}}"
+
+i3lock \
+    --color="#$background" \
+    --insidecolor="#${background}FF" \
+    --insidevercolor="#${verif}FF" \
+    --insidewrongcolor="#${wrong}FF" \
+    --ringcolor="#${background}FF" \
+    --ringvercolor="#${verif}FF" \
+    --ringwrongcolor="#${wrong}FF" \
+    --linecolor="#${foreground}FF" \
+    --keyhlcolor="#${foreground}FF" \
+    --bshlcolor="#${wrong}FF" \
+    --separatorcolor="#${background}FF" \
+    --verifcolor="#${verif}FF" \
+    --wrongcolor="#${wrong}FF" \
+    --layoutcolor="#${foreground}FF" \
+    --timecolor="#${foreground}FF" \
+    --datecolor="#${foreground}FF" \
+    --indpos='x+100:h-100' \
+    --timepos='ix+(r+20):iy+12' \
+    --time-align=1 \
+    --timestr='%H:%M' \
+    --datestr='' \
+    --date-font='Fira Mono' \
+    --time-font='Fira Mono' \
+    --timesize=36 \
+    --radius=36 \
+    --ring-width=4 \
+    --veriftext='' \
+    --wrongtext='' \
+    --noinputtext='' \
+    --locktext='' \
+    --lockfailedtext='' \
+    --indicator \
+    --ignore-empty-password \
+    --clock
