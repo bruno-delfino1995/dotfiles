@@ -1,3 +1,5 @@
+set shell=/bin/sh
+
 " load plugins
 call plug#begin(stdpath('data') . '/plugged')
 
@@ -13,6 +15,8 @@ Plug 'tpope/vim-eunuch'
 Plug 'junegunn/vim-easy-align'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -86,6 +90,18 @@ set nocursorline
 colorscheme base16
 
 "
+" cursor configuration
+"
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
+"
+" completion settings
+"
+set completeopt=menuone,noinsert,preview
+
+"
 " key mappings
 "
 nnoremap <Space> :nohl<CR>
@@ -99,3 +115,4 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
