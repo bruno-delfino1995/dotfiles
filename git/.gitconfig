@@ -19,6 +19,7 @@
 	ls-ignored = !zsh -c 'diff -n <(git status --short | cut -d\" \" -f 2-) <(git status --ignored --short | cut -d\" \" -f 2-) | tail +2'
 	ls-untracked = !zsh -c 'diff -n <(git status --untracked-files=no --short | cut -d\" \" -f 2-) <(git status --untracked-files=normal --short | cut -d\" \" -f 2-) | tail +2'
 	pick-from = !zsh -c 'git cherry-pick $(git slog HEAD..$1 | tac | vipe | cut -d\" \" -f 1 | column)' -
+	fixup = !git commit --fixup=$(git slog | fzf | cut -d\" \" -f1)
 [pull]
 	rebase = true
 [commit]

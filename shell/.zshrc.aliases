@@ -11,3 +11,5 @@ alias pacunlock="rm /var/lib/pacman/db.lck"
 
 alias vim='nvim'
 alias vimdiff='nvim -d'
+
+alias kc="kubectl"
