@@ -1,0 +1,57 @@
+#!/bin/bash
+
+set -e
+
+function get_dir() {
+  if [[ -n "$XDG_SCRATCHPADS_DIR" ]]; then
+    dir="$XDG_SCRATCHPADS_DIR"
+  elif [[ -n "$XDG_CACHE_HOME" ]]; then
+    dir="$XDG_CACHE_HOME/scratchpads"
+  else
+    dir="$HOME/.cache/scratchpads"
+  fi
+
+  if [[ ! -e "$dir" ]]; then
+    mkdir -p "$dir"
+  fi
+
+  echo "$dir"
+}
+
+function get_filename() {
+  if [[ -z "$1" ]]; then
+    echo "scratchpad"
+  else
+    echo "scratchpad.$1"
+  fi
+}
+
+function get_command() {
+  if [[ -t 0 ]]; then
+    if [[ -n "$EDITOR" ]]; then
+      echo "$EDITOR";
+    else
+      # shellcheck disable=SC2016
+      echo 'For terminals you must have $EDITOR defined'
+      exit 1
+    fi
+  else
+    if [[ -n "$VISUAL" ]]; then
+      echo "$VISUAL"
+    else
+      # shellcheck disable=SC2016
+      echo 'For desktops you must have $VISUAL defined'
+      exit 1
+    fi
+  fi
+}
+
+file=$(get_dir)/$(get_filename "$1")
+
+if [[ ! -e "$file" ]]; then
+  touch "$file"
+fi
+
+command="$(get_command)"
+
+$command "$file"
