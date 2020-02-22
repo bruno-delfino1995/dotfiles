@@ -1,8 +1,18 @@
 #!/bin/bash
 
-set -e
+GITIGNORE=$(cat <<EOF
+*
+!.gitignore
+!scratchpad
+!scratchpad.*
+EOF
+)
+
+LOGFILE=".last-edit-date"
 
 function get_dir() {
+  local dir
+
   if [[ -n "$XDG_SCRATCHPADS_DIR" ]]; then
     dir="$XDG_SCRATCHPADS_DIR"
   elif [[ -n "$XDG_CACHE_HOME" ]]; then
@@ -11,18 +21,17 @@ function get_dir() {
     dir="$HOME/.cache/scratchpads"
   fi
 
-  if [[ ! -e "$dir" ]]; then
-    mkdir -p "$dir"
-  fi
-
   echo "$dir"
 }
 
-function get_filename() {
+function get_file() {
+  local dir
+  dir=$(get_dir)
+
   if [[ -z "$1" ]]; then
-    echo "scratchpad"
+    echo "$dir/scratchpad"
   else
-    echo "scratchpad.$1"
+    echo "$dir/scratchpad.$1"
   fi
 }
 
@@ -46,12 +55,69 @@ function get_command() {
   fi
 }
 
-file=$(get_dir)/$(get_filename "$1")
+# returns the date for last edit or for new edit
+function get_edit_date() {
+  local which_date="$1"
 
-if [[ ! -e "$file" ]]; then
-  touch "$file"
-fi
+  cd "$(get_dir)" || exit 1
 
+  if [[ -e "$LOGFILE" && "$which_date" == "l" ]]; then
+    cat "$LOGFILE"
+  elif [[ "$which_date" == "n" ]]; then
+    date --rfc-3339=seconds
+  fi
+
+  # since the date is unknown we should return either empty or exit. however,
+  # by returning empty we skip the first edit commit since it'll have an empty
+  # message error
+  echo ""
+}
+
+function set_edit_date {
+  get_edit_date n > "$LOGFILE"
+}
+
+# this registers the last call to scratchpad on git
+function register_edit() {
+  local edit_date
+  edit_date=$(get_edit_date l)
+
+  cd "$(get_dir)" || exit 1
+
+  git add .
+  git commit -m "$edit_date" --date="$edit_date" >& /dev/null
+
+  # register this edit for the next commit
+  set_edit_date
+}
+
+function setup() {
+  local dir
+  dir=$(get_dir)
+
+  if [[ ! -e "$dir" ]]; then
+    mkdir -p "$dir"
+  fi
+
+  if [[ ! -d "$dir" ]]; then
+    echo "You have something that's not a directory at $dir"
+    exit 1
+  fi
+
+  cd "$dir" || exit 1
+
+  if ! git status >& /dev/null; then
+    git init >& /dev/null
+    git config commit.gpgsign false
+    cat <<< "$GITIGNORE" > .gitignore
+    git add .
+    git commit -m "scratchpad setup" > /dev/null
+  fi
+}
+
+file=$(get_file "$1")
 command="$(get_command)"
 
+setup
+register_edit
 $command "$file"
