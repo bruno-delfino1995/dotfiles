@@ -1,11 +1,20 @@
 [colors]
-background = #222
-background-alt = #444
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+base00 = #{{base00-hex}}
+base01 = #{{base01-hex}}
+base02 = #{{base02-hex}}
+base03 = #{{base03-hex}}
+base04 = #{{base04-hex}}
+base05 = #{{base05-hex}}
+base06 = #{{base06-hex}}
+base07 = #{{base07-hex}}
+base08 = #{{base08-hex}}
+base09 = #{{base09-hex}}
+base0A = #{{base0A-hex}}
+base0B = #{{base0B-hex}}
+base0C = #{{base0C-hex}}
+base0D = #{{base0D-hex}}
+base0E = #{{base0E-hex}}
+base0F = #{{base0F-hex}}
 
 [global/wm]
 margin-top = 5
@@ -14,14 +23,14 @@ margin-bottom = 5
 [bar/workspaces]
 monitor = ${env:MONITOR:}
 width = 100%
-height = 27
+height = 32
 bottom = true
 offset-x = 0
 offset-y = 0
 fixed-center = true
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = ${colors.base00}
+foreground = ${colors.base05}
 
 line-size = 3
 line-color = #f00
@@ -65,27 +74,40 @@ interval = 25
 mount-0 = /
 
 format-mounted-prefix = " "
+format-mounted-prefix-foreground = ${colors.base0B}
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
+label-unmounted-foreground = ${colors.base0B}
 
 [module/bspwm]
 type = internal/bspwm
 
 label-focused = %name%
-label-focused-background = ${colors.background-alt}
 label-focused-padding = 2
+label-focused-foreground = ${colors.base05}
+label-focused-background = ${colors.base01}
+label-focused-underline = ${colors.base0B}
+
+label-unfocused = %name%
+label-unfocused-padding = 4
+label-unfocused-foreground = ${colors.base03}
+label-unfocused-background = ${colors.base00}
 
 label-occupied = %name%
 label-occupied-padding = 2
+label-occupied-foreground = ${colors.base05}
+label-occupied-background = ${colors.base00}
 
 label-urgent = %name%!
-label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
+label-urgent-foreground = ${colors.base07}
+label-urgent-background = ${colors.base03}
+label-urgent-underline = ${colors.base0A}
 
 label-empty = %name%
-label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
+label-empty-foreground = ${colors.base03}
+label-empty-background = ${colors.base00}
 
 ; Separator in between workspaces
 ; label-separator = |
@@ -94,14 +116,14 @@ label-empty-padding = 2
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.base0B}
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.base0B}
 label = %percentage_used%%
 
 [module/wlan]
@@ -113,13 +135,13 @@ format-connected = <ramp-signal> <label-connected>
 label-connected = %essid%
 
 format-disconnected = 
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+label-disconnected = 0.0.0.0
+label-disconnected-foreground = ${colors.base03}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
 ramp-signal-2 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+ramp-signal-foreground = ${colors.base0B}
 
 [module/eth]
 type = internal/network
@@ -127,12 +149,12 @@ interface = enp0s25
 interval = 3.0
 
 format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected-prefix-foreground = ${colors.base0B}
 label-connected = %local_ip%
 
 format-disconnected-prefix = 
 label-disconnected = 0.0.0.0
-label-disconnected-foreground = ${colors.foreground-alt}
+label-disconnected-foreground = ${colors.base03}
 
 [module/date]
 type = internal/date
@@ -145,7 +167,7 @@ time = "%H:%M"
 time-alt = "%H:%M:%S"
 
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.base0B}
 
 label = %date% %time%
 
@@ -168,10 +190,10 @@ ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
 ramp-volume-3 = 
-ramp-volume-foreground = ${colors.foreground-alt}
+ramp-volume-foreground = ${colors.base0B}
 
 label-muted = 
-label-muted-foreground = ${colors.foreground-alt}
+label-muted-foreground = ${colors.base03}
 label-volume = %percentage:2%%
 
 [module/battery]
@@ -189,7 +211,7 @@ ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-foreground = ${colors.base0B}
 
 animation-charging-capacity-0 = 
 animation-charging-capacity-1 = 
@@ -197,7 +219,7 @@ animation-charging-capacity-2 = 
 animation-charging-capacity-3 = 
 animation-charging-capacity-4 = 
 animation-charging-capacity-5 = 
-animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-foreground = ${colors.base0B}
 animation-charging-framerate = 750
 
 animation-discharging-capacity-0 = 
@@ -205,7 +227,7 @@ animation-discharging-capacity-1 = 
 animation-discharging-capacity-2 = 
 animation-discharging-capacity-3 = 
 animation-discharging-capacity-4 = 
-animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-foreground = ${colors.base0B}
 animation-discharging-framerate = 750
 
 [module/temperature]
@@ -218,7 +240,7 @@ format-warn = <ramp> <label-warn>
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
+label-warn-foreground = ${colors.base0B}
 
 ramp-0 = 
 ramp-1 = 
@@ -226,7 +248,7 @@ ramp-2 = 
 ramp-3 = 
 ramp-4 = 
 ramp-5 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-foreground = ${colors.base0B}
 
 [module/powermenu]
 type = custom/menu
@@ -236,11 +258,11 @@ expand-right = true
 format-spacing = 1
 
 label-open = 
-label-open-foreground = ${colors.secondary}
+label-open-foreground = ${colors.base0B}
 label-close = 
-label-close-foreground = ${colors.secondary}
+label-close-foreground = ${colors.base0B}
 label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
+label-separator-foreground = ${colors.base0B}
 
 menu-0-0 = 
 menu-0-0-exec = menu-open-1
