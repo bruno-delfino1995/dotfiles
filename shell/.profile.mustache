@@ -28,6 +28,7 @@ export QT_SCREEN_SCALE_FACTORS="1;1"
 export WINIT_HIDPI_FACTOR=1
 
 export GOPATH=$HOME/.go
-export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
+GEM_HOME=$(ruby -e 'puts Gem.user_dir')
+export GEM_HOME
 
 export PATH="$PATH:$HOME/.local/bin:$GOPATH/bin:$GEM_HOME/bin"

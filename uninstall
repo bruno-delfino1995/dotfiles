@@ -1,13 +1,11 @@
 #!/bin/bash
 DIR=$(readlink -f "$(dirname "$0")")
 INSTALLATION="$HOME/.dfiles"
-BRANCH="installation"
 
 cd "$INSTALLATION" || exit 1
 
-for d in $(ls -d */); do
-  dir=$(echo "$d" | head -c -2)
-  stow -t "$HOME" -D "$dir"
+for package in $(fd --type d --max-depth=1 --exclude "colorschemes"); do
+  stow -t "$HOME" -D "$package"
 done
 
 cd "$DIR" || exit 1

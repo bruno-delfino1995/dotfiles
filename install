@@ -24,7 +24,7 @@ function install_packages() {
   for package in $(fd --type d --max-depth=1 --exclude "colorschemes"); do
     package_dirs=$(fd -H --type d . "$package" | sed "s|^$package/|$HOME/|" | uniq | sort)
     if [[ -n "$package_dirs" ]]; then
-      echo $package_dirs | xargs mkdir -p
+      echo "$package_dirs" | xargs mkdir -p
     fi
     stow -t "$HOME" -S "$package"
   done
@@ -38,7 +38,7 @@ function build_packages() {
   stat "$scheme" > /dev/null || exit 1
 
   for template in $(fd -H -e mustache --exclude "colorschemes" .); do
-    target=$(echo "$template" | sed 's/.mustache$//')
+    target="${template%.mustache}"
     ./colorscheme.rb "$scheme" | mustache - "$template" > "$target"
     chmod --reference="$template" "$target"
   done

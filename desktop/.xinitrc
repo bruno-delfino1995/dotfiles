@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
-[ -f ~/.xprofile ] && . ~/.xprofile
+# shellcheck source=.xprofile
+[ -f ~/.xprofile ] && source ~/.xprofile
 
 exec bspwm
 

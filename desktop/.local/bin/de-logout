@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function closewindows () {
   for w in $(bspc query -N); do
