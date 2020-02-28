@@ -1,7 +1,9 @@
 colorschemes/*
+colorscheme.yaml
 !colorschemes/.gitkeep
 
 # compiled
+*.tmp
 desktop/.Xresources.d/colors
 desktop/.config/alacritty/alacritty.yml
 desktop/.config/rofi/config.rasi

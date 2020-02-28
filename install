@@ -2,11 +2,19 @@
 DIR=$(readlink -f "$(dirname "$0")")
 INSTALLATION="$HOME/.dfiles"
 BRANCH="installation"
-COLORSCHEME="$1"
+CURRENT_COLORSCHEME="$INSTALLATION/colorscheme.yaml"
+COLORSCHEME="$CURRENT_COLORSCHEME"
 
-if [[ -z "$COLORSCHEME" ]]; then
-  echo "Select a file under \`colorschemes\` and pass it as first argument"
+if [[ -z "$1" && ! -e "$CURRENT_COLORSCHEME" ]]; then
+  echo "You don't have a installed colorscheme, please select a base16 colorscheme yaml file"
   exit 1
+elif [[ ! -e "$1" && ! -e "$INSTALLATION/colorschemes/$1" ]]; then
+  echo "The specified file doesn't exist neither at \"$1\" nor at \"$INSTALLATION/colorschemes/$1\""
+  exit 1
+elif [[ -n "$1" && -e "$1" ]]; then
+  COLORSCHEME=$(realpath "$1")
+elif [[ -n "$1" ]]; then
+  COLORSCHEME="$INSTALLATION/colorschemes/$1"
 fi
 
 cd "$DIR" || exit 1
@@ -33,15 +41,23 @@ function install_packages() {
 
 function build_packages() {
   cd "$INSTALLATION" || exit 1
-  scheme="$INSTALLATION/colorschemes/$COLORSCHEME.yml"
 
-  stat "$scheme" > /dev/null || exit 1
+  stat "$COLORSCHEME" > /dev/null || exit 1
+
+  if [[ "$COLORSCHEME" != "$CURRENT_COLORSCHEME" ]]; then
+    cp "$COLORSCHEME" "$CURRENT_COLORSCHEME"
+  fi
 
   for template in $(fd -H -e mustache --exclude "colorschemes" .); do
     target="${template%.mustache}"
-    ./colorscheme.rb "$scheme" | mustache - "$template" > "$target"
+    tmp="${template/%.mustache/.tmp}"
+
+    ./colorscheme.rb "$CURRENT_COLORSCHEME" | mustache - "$template" > "$tmp"
+    mv "$tmp" "$target"
     chmod --reference="$template" "$target"
   done
+
+  exit 1
 }
 
 setup_local_installation
