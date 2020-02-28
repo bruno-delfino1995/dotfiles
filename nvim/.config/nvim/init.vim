@@ -1,4 +1,3 @@
-" vim:foldmethod=marker:foldlevel=0
 set shell=/bin/sh
 
 " Plugins {{{
@@ -17,6 +16,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'dense-analysis/ale'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -25,7 +25,6 @@ filetype plugin indent on " auto load plugin filetypes and indent specs
 syntax on                 " enable syntax highlighting
 
 " }}}
-
 " Base Settings {{{
 
 set noerrorbells               " no beeps
@@ -38,53 +37,71 @@ set ttyfast                    " improves performance of redrawing by signalizin
 set wildmenu                   " show a menu for tab completion
 set modeline                   " allow lines on extremities to contain vim config - `vim:foldmethod=marker:foldlevel=0`
 set modelines=2                " amount of lines to check on extremities for modelines - 2 at least because of shebang
+" set hidden                     " allow to change buffers without writing changes
+set nojoinspaces               " prevents double spaces after punctuation when joining with `J`
+set linebreak                  " makes vim break line only on whitespaces
+set autoindent                 " start next line at same level as current
+set smartindent                " guess the next indenting and start the line correctly
+
+" Backups {{{
+
+set backup         " write backup for current buffer
+set writebackup    " write backups befory overwriting the actual file
+set updatetime=300 " lower value for swap write wait threshold
+set undofile       " allow undos even after file has been closed and reopened
+set backupdir=/var/tmp,/tmp
+set backupskip=/tmp/*,/private/tmp/*
 
 " }}}
-
+" }}}
 " Cursor Configuration {{{
 
 let &t_SI = "\<Esc>[6 q" " pipe on insert
 let &t_SR = "\<Esc>[4 q" " underscore on replace
 let &t_EI = "\<Esc>[2 q" " block on everything else
-" }}}
 
+" }}}
 " Rendering Settings {{{
 
-set number         " show line numbers
-set relativenumber " show line numbers relative to cursor position
-set showcmd        " show me what I'm typing
-set noshowmode     " show current mode.
-set nowrap         " do not wrap long lines
-set lazyredraw     " disables unnecessary redrawings, like on middle of macros
-set laststatus=2   " controls whether to show the bottom status line
-set showtabline=2  " always shows tab line independent of having more than one
-set list           " show invisible characters
-" invisible characters representation
-set listchars=tab:>-,trail:~,extends:>,precedes:<,nbsp:%
+set number                                               " show line numbers
+set relativenumber                                       " show line numbers relative to cursor position
+set showcmd                                              " show me what I'm typing
+set noshowmode                                           " show current mode.
+set nowrap                                               " do not wrap long lines
+set lazyredraw                                           " disables unnecessary redrawings, like on middle of macros
+set laststatus=2                                         " controls whether to show the bottom status line
+set showtabline=2                                        " always shows tab line independent of having more than one
+set list                                                 " show invisible characters
+set listchars=tab:>-,trail:~,extends:>,precedes:<,nbsp:% " invisible characters representation
 " set listchars+=eol:¬,space:·
+set cmdheight=2                                          " more space for displaying messages.
+set shortmess+=c                                         " don't display messages about completions
+set signcolumn=yes                                       " always show sign column
+
+" vertical/horizontal scroll off settings
+set scrolloff=3
+set sidescrolloff=7
+set sidescroll=1
 
 " }}}
-
 " Split Settings {{{
 
 set splitright " split vertical windows right to the current windows
 set splitbelow " split horizontal windows below to the current windows
 
 " }}}
-
 " Tab & Folding Settings {{{
 
-set expandtab " tabs are spaces
-set shiftwidth=2 " number of spaces by indent
-set tabstop=2 " number of visual spaces per TAB
-set softtabstop=2 " number of spaces in tab when editing
-set foldenable      " enable folding
+set expandtab         " tabs are spaces
+set shiftwidth=2      " number of spaces by indent
+set tabstop=2         " number of visual spaces per TAB
+set softtabstop=2     " number of spaces in tab when editing
+set foldenable        " enable folding
 set foldmethod=indent " fold based on indent level
-set foldlevelstart=5   " open 10 folds by default
-set foldnestmax=10      " limits folds to 10
+set foldlevelstart=5  " open 10 folds by default
+set foldnestmax=10    " limits folds to 10
 
 " }}}
-
 " Searching Settings {{{
 
 set noshowmatch " do not show matching brackets by flickering
@@ -94,28 +111,40 @@ set ignorecase  " search case insensitive...
 set smartcase   " ... but not when search pattern contains upper case characters
 
 " }}}
-
 " Color Settings {{{
 
 colorscheme base16
-set nocursorcolumn " disable column hightlight
-set nocursorline  " disable line hightlight
+set nocursorcolumn                    " disable column hightlight
+set nocursorline                      " disable line hightlight
 call matchadd('ColorColumn', '\%81v') " hightlight characters at column 81
 
 " }}}
-
 " Completion Settings {{{
 
 set completeopt=menuone,noinsert,preview
 
 " }}}
-
 " Key Mappings {{{
 
-nnoremap <silent> <Space> :nohl<CR>
-nnoremap <silent> <F5> :exe 'source '.stdpath('config').'/init.vim'<CR>
-nnoremap <silent> <C-p> :Files<CR>
+let mapleader="\<space>"
 
+nnoremap <silent> <leader>ev :sp $MYVIMRC<CR>
+nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
+nnoremap <silent> <leader><space> :nohlsearch<CR>
+
+" make `U` behave as redo
+nnoremap U <C-r>
+" make `Y` more consistent when related to `D` and `C`
+nnoremap Y y$
+" make `S` behave like `X`, and keep `s` as `x`
+nnoremap S hs
+
+" FZF {{{
+
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-S-f> :Rg<CR>
+
+" }}}
 " EasyAlign {{{
 
 " start interactive in visual mode (e.g. vipga)
@@ -125,3 +154,5 @@ nmap ga <Plug>(EasyAlign)
 
 " }}}
 " }}}
+
+" vim:foldmethod=marker:foldlevel=0
