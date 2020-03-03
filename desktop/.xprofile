@@ -18,4 +18,4 @@ clipster -d &
 sxhkd &
 picom &
 dunst &
-
+dapper -u
