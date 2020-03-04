@@ -3,6 +3,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 # Default programs:
 export EDITOR="nvim"
+# export VISUAL="rofi-sensible-terminal -e nvim"
 export TERMINAL="alacritty"
 export BROWSER="firefox"
 export READER="zathura"
@@ -11,6 +12,7 @@ export FILE="ranger"
 # FZF
 export FZF_BASE="/usr/local/opt/fzf"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_ALT_C_COMMAND='fd --type d --max-depth 3'
 export FZF_DEFAULT_OPTS="
   --layout=default --height 40%
