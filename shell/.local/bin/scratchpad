@@ -12,9 +12,11 @@ LOGFILE=".last-edit-date"
 
 function get_dir() {
   local dir
+  local xdg_dir
+  xdg_dir=$(xdg-user-dir SCRATCHPADS)
 
-  if [[ -n "$XDG_SCRATCHPADS_DIR" ]]; then
-    dir="$XDG_SCRATCHPADS_DIR"
+  if [[ -n "$xdg_dir" ]]; then
+    dir="$xdg_dir"
   elif [[ -n "$XDG_CACHE_HOME" ]]; then
     dir="$XDG_CACHE_HOME/scratchpads"
   else
