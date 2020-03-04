@@ -17,6 +17,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'dense-analysis/ale'
 Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 
@@ -42,6 +43,7 @@ set nojoinspaces               " prevents double spaces after punctuation when j
 set linebreak                  " makes vim break line only on whitespaces
 set autoindent                 " start next line at same level as current
 set smartindent                " guess the next indenting and start the line correctly
+set sessionoptions=blank,curdir,folds,help,tabpages,winsize " what to persist on :mksession
 
 " Backups {{{
 
@@ -123,6 +125,24 @@ call matchadd('ColorColumn', '\%81v') " hightlight characters at column 81
 
 set completeopt=menuone,noinsert,preview
 
+" }}}
+" Plugins Configuration {{{
+" Startify {{{
+let g:startify_session_dir='~/Worspaces'
+let g:startify_session_autoload=1
+let g:startify_session_number=5
+let g:startify_session_persistence=1
+let g:startify_session_sort=1
+let g:startify_change_to_vcs_root=1
+let g:startify_custom_header='startify#pad(startify#fortune#boxed())'
+let g:startify_lists=[
+  \ { 'type': 'bookmarks', 'header': ['   Bookmarks']    },
+  \ { 'type': 'files',     'header': ['   Recent Files'] },
+  \ { 'type': 'sessions',  'header': ['   Sessions']     },
+  \ ]
+let g:startify_bookmarks = [
+  \ { 'c': '~/.dfiles' }
+  \ ]
 " }}}
 " Key Mappings {{{
 
