@@ -18,6 +18,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'dense-analysis/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'mhinz/vim-startify'
+Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -128,7 +129,7 @@ set completeopt=menuone,noinsert,preview
 " }}}
 " Plugins Configuration {{{
 " Startify {{{
-let g:startify_session_dir='~/Worspaces'
+let g:startify_session_dir='~/Workspaces/nvim'
 let g:startify_session_autoload=1
 let g:startify_session_number=5
 let g:startify_session_persistence=1
@@ -137,8 +138,8 @@ let g:startify_change_to_vcs_root=1
 let g:startify_custom_header='startify#pad(startify#fortune#boxed())'
 let g:startify_lists=[
   \ { 'type': 'bookmarks', 'header': ['   Bookmarks']    },
-  \ { 'type': 'files',     'header': ['   Recent Files'] },
   \ { 'type': 'sessions',  'header': ['   Sessions']     },
+  \ { 'type': 'files',     'header': ['   Recent Files'] },
   \ ]
 let g:startify_bookmarks = [
   \ { 'c': '~/.dfiles' }
