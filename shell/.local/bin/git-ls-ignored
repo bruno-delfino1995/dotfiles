@@ -1,0 +1,31 @@
+#!/bin/bash
+
+header() {
+  echo -e "## \e[32m$1\e[0m"
+}
+
+gitignore=$(diff -n \
+  <(git status --short | cut -d" " -f 2-) \
+  <(git status --ignored --short | cut -d" " -f 2-)
+)
+
+if [ -n "$gitignore" ]; then
+  header 'gitignore'
+  echo "$gitignore"
+fi
+
+
+skip_worktree=$(git ls-files -t | grep '^S' | cut -d' ' -f2-)
+if [ -n "$skip_worktree" ]; then
+echo ''
+header 'skip-worktree'
+echo "$skip_worktree"
+fi
+
+assume_unchanged=$(git ls-files -v | grep "^[[:lower:]]" | cut -d' ' -f2-)
+if [ -n "$assume_unchanged" ]; then
+  echo ''
+  header 'assume-unchanged'
+  echo "$assume_unchanged"
+fi
+

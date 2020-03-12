@@ -13,13 +13,14 @@
 	last = log -1 HEAD
 	slog = log --oneline
 	remove-gone = !git branch -D `git branch -v | grep '\\[gone\\]' | awk '{print($1)}'`
-	oldest-ancestor = !zsh -c 'diff -u <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | sed -ne \"s/^ //p\" | head -1' -
-	squash = !zsh -c 'git reset --hard \"$1\" && git merge --squash HEAD@{1} && git commit' -
+	oldest-ancestor = !bash -c 'diff -u <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | sed -ne \"s/^ //p\" | head -1' -
+	squash = !bash -c 'git reset --hard \"$1\" && git merge --squash HEAD@{1} && git commit' -
 	ls-conflicts = diff --name-only --diff-filter=U
-	ls-ignored = !zsh -c 'diff -n <(git status --short | cut -d\" \" -f 2-) <(git status --ignored --short | cut -d\" \" -f 2-) | tail +2'
-	ls-untracked = !zsh -c 'diff -n <(git status --untracked-files=no --short | cut -d\" \" -f 2-) <(git status --untracked-files=normal --short | cut -d\" \" -f 2-) | tail +2'
-	pick-from = !zsh -c 'git cherry-pick $(git slog HEAD..$1 | tac | vipe | cut -d\" \" -f 1 | column)' -
+	ls-untracked = !bash -c 'diff -n <(git status --untracked-files=no --short | cut -d\" \" -f 2-) <(git status --untracked-files=normal --short | cut -d\" \" -f 2-) | tail +2'
+	pick-from = !bash -c 'git cherry-pick $(git slog HEAD..$1 | tac | vipe | cut -d\" \" -f 1 | column)' -
 	fixup = !git commit --fixup=$(git slog | fzf | cut -d\" \" -f1)
+	ignore = update-index --skip-worktree
+	unignore = update-index --no-skip-worktree
 [pull]
 	rebase = true
 [commit]
