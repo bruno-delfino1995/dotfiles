@@ -56,8 +56,6 @@ function build_packages() {
     mv "$tmp" "$target"
     chmod --reference="$template" "$target"
   done
-
-  exit 1
 }
 
 setup_local_installation
