@@ -16,10 +16,6 @@ base0D = #{{base0D-hex}}
 base0E = #{{base0E-hex}}
 base0F = #{{base0F-hex}}
 
-[global/wm]
-margin-top = 5
-margin-bottom = 5
-
 [bar/default]
 monitor = ${env:MONITOR:}
 width = 100%
@@ -32,24 +28,22 @@ fixed-center = true
 background = ${colors.base00}
 foreground = ${colors.base05}
 
-line-size = 3
-line-color = #f00
+line-size = 4
 
-border-size = 0
-border-color = #00000000
+border-top-size = 2
+border-color = ${colors.base05}
 
 padding-left = 2
 padding-right = 2
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = "PolybarIcons:fontformat=truetype:size=12:antialias=true;2"
+font-0 = "Lexend Deca:fontformat=truetype:size=12:antialias=true;2"
+font-1 = "PolybarIcons:fontformat=truetype:size=12:antialias=true;2"
 
 modules-left = bspwm
-modules-center =
+modules-center = title
 modules-right = filesystem memory cpu temperature battery sep wlan eth sep pulseaudio sep date
 
 tray-position = right
@@ -70,6 +64,19 @@ cursor-scroll = ns-resize
 type = custom/script
 exec = echo "|"
 interval = 3600
+
+[module/title]
+type = internal/xwindow
+
+format = <label>
+format-background = ${colors.base05}
+format-foreground = ${colors.base00}
+format-padding = 4
+
+label = %title%
+label-empty = ???
+label-empty-foreground = ${colors.base03}
+label-maxlen = 50
 
 [module/filesystem]
 type = internal/fs
@@ -93,7 +100,7 @@ label-focused-background = ${colors.base01}
 label-focused-underline = ${colors.base0B}
 
 label-unfocused = %name%
-label-unfocused-padding = 4
+label-unfocused-padding = 2
 label-unfocused-foreground = ${colors.base03}
 label-unfocused-background = ${colors.base00}
 
@@ -156,7 +163,7 @@ format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.base0B}
 label-connected = %local_ip%
 
-format-disconnected-prefix = 
+format-disconnected-prefix = " "
 label-disconnected = 0.0.0.0
 label-disconnected-foreground = ${colors.base03}
 
