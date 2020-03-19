@@ -13,3 +13,4 @@ alias vim='nvim'
 alias vimdiff='nvim -d'
 
 alias kc="kubectl"
+alias mux="tmuxinator"
