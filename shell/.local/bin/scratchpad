@@ -15,7 +15,7 @@ function get_dir() {
   local xdg_dir
   xdg_dir=$(xdg-user-dir SCRATCHPADS)
 
-  if [[ -n "$xdg_dir" ]]; then
+  if [[ "$xdg_dir" != "$HOME" ]]; then
     dir="$xdg_dir"
   elif [[ -n "$XDG_CACHE_HOME" ]]; then
     dir="$XDG_CACHE_HOME/scratchpads"
