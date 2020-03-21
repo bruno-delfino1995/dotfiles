@@ -6,7 +6,8 @@ header() {
 
 gitignore=$(diff -n \
   <(git status --short | cut -d" " -f 2-) \
-  <(git status --ignored --short | cut -d" " -f 2-)
+  <(git status --ignored --short | cut -d" " -f 2-) \
+  | tail +2
 )
 
 if [ -n "$gitignore" ]; then
