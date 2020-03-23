@@ -12,6 +12,9 @@
 # VIM
 *.swp
 
+# Emacs
+*~
+
 # IntelliJ IDEA
 .idea/
 *.iws
