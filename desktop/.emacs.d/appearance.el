@@ -1,11 +1,11 @@
 ;; remove gnu message
 (setq inhibit-startup-message t)
 
-;; remove toolbar with new and open
-(tool-bar-mode -1)
-
-;; remove scrollbars
-(when (display-graphic-p) (set-scroll-bar-mode nil))
+;; remove toolbar, scrollbar and menubar
+; NOTE: keep this order because of a bug on emacs - https://emacs.stackexchange.com/questions/48785/scroll-bar-area-remains-blacked-out-after-launching-with-scroll-bar-mode-dis
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+(menu-bar-mode 0)
 
 ;; Theming
 (use-package base16-theme
@@ -35,7 +35,10 @@
   :width 'normal)
 
 ;; line numbers
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type 'visual)
+; prevents line number bar to grow, keeps it giant even when at the beginning
+; of a thousand lines file
+(setq display-line-numbers-width-start t)
 (global-display-line-numbers-mode 1)
 
 ;; focus
@@ -48,3 +51,11 @@
 ;; disable line wrapping
 (set-default 'truncate-lines t)
 
+;; icons
+(use-package all-the-icons
+  :ensure t)
+
+;; modeline
+(use-package doom-modeline
+  :ensure t
+  :config (doom-modeline-mode 1))

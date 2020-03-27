@@ -40,16 +40,33 @@
   :ensure t
   :config (evil-collection-init))
 
+; show search progression through matches (x/y)
+(use-package anzu
+  :ensure t
+  :config (global-anzu-mode 1))
+
+; anzu bindings for evil
+(use-package evil-anzu
+  :after evil
+  :ensure t)
+
+; [required-by: origami]
 (use-package dash
   :ensure t)
 
+; [required-by: origami]
 (use-package s
   :ensure t)
 
 ; enable foldings
 (use-package origami
   :ensure t
-  :config (global-origami-mode))
+  :config (global-origami-mode 1))
+
+; project interation
+(use-package projectile
+  :ensure t
+  :config (projectile-mode 1))
 
 ; completion engine
 (use-package ivy
@@ -63,3 +80,20 @@
   :ensure t
   :config (counsel-mode 1))
 
+[required-by: dashboard]
+(use-package page-break-lines
+  :ensure t)
+
+; nice startup buffer
+(use-package dashboard
+  :ensure t
+  :init
+  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-show-shortcuts t)
+  (setq dashboard-items '((projects . 5)
+                          (bookmarks . 5)
+                          (recents  . 5)))
+  :config (dashboard-setup-startup-hook))
+
+; enable extra functionality for dired by default
+(require 'dired-x)

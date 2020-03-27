@@ -2,7 +2,6 @@
 (load "~/.emacs.d/appearance.el")
 (load "~/.emacs.d/packages.el")
 (load "~/.emacs.d/layers.el")
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -10,7 +9,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (fill-column-indicator use-package parinfer origami linum-relative hlinum helm-projectile general focus evil-surround evil-collection dimmer counsel color-theme-modern cider beacon))))
+    (origami use-package projectile general evil-surround evil-collection evil-anzu doom-modeline dimmer dashboard counsel base16-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
