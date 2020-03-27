@@ -18,7 +18,7 @@
 	ls-conflicts = diff --name-only --diff-filter=U
 	ls-untracked = !bash -c 'diff -n <(git status --untracked-files=no --short | cut -d\" \" -f 2-) <(git status --untracked-files=normal --short | cut -d\" \" -f 2-) | tail +2'
 	pick-from = !bash -c 'git cherry-pick $(git slog HEAD..$1 | tac | vipe | cut -d\" \" -f 1 | column)' -
-	fixup = !git commit --fixup=$(git slog | fzf | cut -d\" \" -f1)
+	fixup = !git commit --fixup=$(git slog -n 30 | fzf | cut -d\" \" -f1)
 	ignore = update-index --skip-worktree
 	unignore = update-index --no-skip-worktree
 [pull]
