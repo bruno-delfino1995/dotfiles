@@ -1,13 +1,8 @@
 # Local untracked files
 *.ignore
 
-# IDE
+# VSCode
 .vscode/
-
-# Environment setup
-.tool-versions
-.env
-.envrc
 
 # VIM
 *.swp
@@ -20,6 +15,14 @@
 *.iws
 *.iml
 *.ipr
+
+# Environment setup
+.tool-versions
+.env
+.envrc
+
+# Docker
+docker-compose.override.yml
 
 # Elixir LS
 .elixir_ls/
