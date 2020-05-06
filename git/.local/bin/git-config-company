@@ -1,0 +1,6 @@
+#!/bin/bash
+
+git config user.email "${WORK_EMAIL}"
+git config commit.gpgsign false
+git config tag.gpgsign false
+
