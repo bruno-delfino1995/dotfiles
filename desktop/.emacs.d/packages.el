@@ -40,6 +40,11 @@
   :ensure t
   :config (evil-collection-init))
 
+; easy comments managing
+(use-package evil-commentary
+  :ensure t
+  :config (evil-commentary-mode 1))
+
 ; show search progression through matches (x/y)
 (use-package anzu
   :ensure t
@@ -66,6 +71,9 @@
 ; project interation
 (use-package projectile
   :ensure t
+  :init
+  (setq projectile-completion-system 'ivy)
+  (setq projectile-keymap-prefix (kbd "C-c p"))
   :config (projectile-mode 1))
 
 ; completion engine
@@ -96,4 +104,19 @@
   :config (dashboard-setup-startup-hook))
 
 ; enable extra functionality for dired by default
+; [required-by: vinegar layer] - allow to open dir without -
 (require 'dired-x)
+
+(use-package dired+
+  :load-path "~/.emacs.d/packages/dired+"
+  :config (diredp-toggle-find-file-reuse-dir 1))
+
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
+(use-package evil-lion
+  :ensure t
+  :config
+  (evil-lion-mode))

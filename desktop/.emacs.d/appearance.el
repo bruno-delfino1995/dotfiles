@@ -23,7 +23,7 @@
   evil-replace-state-cursor `(,(plist-get base16-colors :base08) bar)
   evil-visual-state-cursor  `(,(plist-get base16-colors :base09) box))
 
-;; disable cursor blink
+;; disable cursor blink and highlight current line
 (blink-cursor-mode -1)
 (global-hl-line-mode 1)
 
@@ -41,15 +41,12 @@
 (setq display-line-numbers-width-start t)
 (global-display-line-numbers-mode 1)
 
-;; focus
-(use-package dimmer
-  :ensure t
-  :init
-  (setq dimmer-fraction 0.8)
-  :config (dimmer-mode 1))
+;; column number on status bar
+(column-number-mode 1)
 
-;; disable line wrapping
+;; remove line truncation and wrapping
 (set-default 'truncate-lines t)
+(global-visual-line-mode -1)
 
 ;; icons
 (use-package all-the-icons
