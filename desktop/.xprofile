@@ -2,13 +2,12 @@
 
 xrandr --auto
 autorandr --change
+redshift -P -O 4500
 
 xrdb -I"$HOME" ~/.Xresources
 
 xsetroot -cursor_name left_ptr
 hsetroot -solid '#262729'
-
-redshift -P -O 5000
 
 xset s on
 xset s 600
