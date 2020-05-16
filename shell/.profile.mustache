@@ -1,6 +1,8 @@
 export LANG=en_US.UTF-8
 export XDG_CONFIG_HOME=$HOME/.config
 
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh
+
 # Default programs:
 export EDITOR="nvim"
 export VISUAL="emacsclient -c -a emacs"
@@ -33,4 +35,4 @@ export GOPATH=$HOME/.go
 GEM_HOME=$(ruby -e 'puts Gem.user_dir')
 export GEM_HOME
 
-export PATH="$PATH:$HOME/.local/bin:$GOPATH/bin:$GEM_HOME/bin"
+export PATH="$PATH:$HOME/.emacs.d/bin:$HOME/.local/bin:$GOPATH/bin:$GEM_HOME/bin"
