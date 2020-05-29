@@ -14,11 +14,11 @@ xset s 600
 xss-lock de-lock &
 
 xset r rate 250 30
+autocutsel -fork &
 
-clipster -d &
 sxhkd &
 picom &
 dunst &
-dapper -u
+dapper -u &
 
 emacs --daemon
