@@ -63,5 +63,4 @@
 (add-hook '+doom-dashboard-mode-hook (lambda () (display-line-numbers-mode 0)))
 
 (add-hook 'dired-after-readin-hook 'dired-hide-details-mode)
-(add-hook 'dired-after-readin-hook 'dired-git-info-auto-enable)
 
