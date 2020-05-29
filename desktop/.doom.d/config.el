@@ -64,3 +64,5 @@
 
 (add-hook 'dired-after-readin-hook 'dired-hide-details-mode)
 
+;; disable annoying confirmation prompt on exit
+(setq confirm-kill-emacs nil)
