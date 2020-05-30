@@ -57,9 +57,17 @@
 ;; open dired on current dir
 (map! :n "-" (lambda () (interactive) (dired ".")))
 
+;; better integration of visual-line-mode and evil
+;; A and I for visual lines but 0 and $ still for logical lines
+(use-package evil
+  :init (setq evil-respect-visual-line-mode t))
+(define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+(define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+(define-key evil-motion-state-map [remap evil-next-line] #'evil-next-visual-line)
+(define-key evil-motion-state-map [remap evil-previous-line] #'evil-previous-visual-line)
+
 ;; allow ivy completion for ex commands - https://github.com/hlissner/doom-emacs/issues/640
-(after! ivy
-  (advice-remove #'evil-ex #'+ivy--inhibit-completion-in-region-a))
+(after! ivy (advice-remove #'evil-ex #'+ivy--inhibit-completion-in-region-a))
 
 (add-hook 'vterm-mode-hook (lambda () (display-line-numbers-mode 0)))
 (add-hook '+doom-dashboard-mode-hook (lambda () (display-line-numbers-mode 0)))
