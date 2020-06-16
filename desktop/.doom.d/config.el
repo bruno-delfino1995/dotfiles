@@ -36,6 +36,8 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'visual)
 (global-display-line-numbers-mode)
+(add-hook 'vterm-mode-hook (lambda () (display-line-numbers-mode 0)))
+(add-hook '+doom-dashboard-mode-hook (lambda () (display-line-numbers-mode 0)))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -68,8 +70,5 @@
 
 ;; allow ivy completion for ex commands - https://github.com/hlissner/doom-emacs/issues/640
 (after! ivy (advice-remove #'evil-ex #'+ivy--inhibit-completion-in-region-a))
-
-(add-hook 'vterm-mode-hook (lambda () (display-line-numbers-mode 0)))
-(add-hook '+doom-dashboard-mode-hook (lambda () (display-line-numbers-mode 0)))
 
 (add-hook 'dired-after-readin-hook 'dired-hide-details-mode)

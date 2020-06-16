@@ -21,6 +21,7 @@
 	fixup = !git commit --fixup=$(git slog -n 30 | fzf | cut -d\" \" -f1)
 	ignore = update-index --skip-worktree
 	unignore = update-index --no-skip-worktree
+	permission-reset = !git diff -p -R --no-ext-diff --no-color | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
 [pull]
 	rebase = true
 [commit]
