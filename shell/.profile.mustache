@@ -5,7 +5,6 @@ export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh
 
 # Default programs:
 export EDITOR="nvim"
-export VISUAL="emacsclient -c -a emacs"
 export TERMINAL="alacritty"
 export BROWSER="firefox"
 export READER="zathura"
@@ -34,6 +33,5 @@ export WINIT_HIDPI_FACTOR=1
 export GOPATH=$HOME/.go
 GEM_HOME=$(ruby -e 'puts Gem.user_dir')
 export GEM_HOME
-
 
 export PATH="$PATH:$HOME/.emacs.d/bin:$HOME/.local/bin:$HOME/.cargo/bin:$GOPATH/bin:$GEM_HOME/bin"
