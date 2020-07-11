@@ -74,7 +74,7 @@ set noshowmode                                           " show current mode.
 set nowrap                                               " do not wrap long lines
 set lazyredraw                                           " disables unnecessary redrawings, like on middle of macros
 set laststatus=2                                         " controls whether to show the bottom status line
-set showtabline=2                                        " always shows tab line independent of having more than one
+set showtabline=0                                        " never shows tab line
 set list                                                 " show invisible characters
 set listchars=tab:>-,trail:~,extends:>,precedes:<,nbsp:% " invisible characters representation
 " set listchars+=eol:¬,space:·
