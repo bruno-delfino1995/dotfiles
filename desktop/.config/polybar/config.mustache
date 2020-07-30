@@ -16,6 +16,10 @@ base0D = #{{base0D-hex}}
 base0E = #{{base0E-hex}}
 base0F = #{{base0F-hex}}
 
+[sizes]
+workspace-bottom = 2
+border-top = 1
+
 [bar/default]
 monitor = ${env:MONITOR:}
 width = 100%
@@ -28,9 +32,9 @@ fixed-center = true
 background = ${colors.base00}
 foreground = ${colors.base05}
 
-line-size = 4
+line-size = ${sizes.workspace-bottom}
 
-border-top-size = 2
+border-top-size = ${sizes.border-top}
 border-color = ${colors.base05}
 
 padding-left = 2
@@ -69,9 +73,9 @@ fixed-center = true
 background = ${colors.base00}
 foreground = ${colors.base05}
 
-line-size = 4
+line-size = ${sizes.workspace-bottom}
 
-border-top-size = 2
+border-top-size = ${sizes.border-top}
 border-color = ${colors.base05}
 
 padding-left = 2
