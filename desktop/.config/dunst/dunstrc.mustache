@@ -77,8 +77,7 @@ shrink = no
 # The transparency of the window.  Range: [0; 100].
 # This option will only work if a compositing windowmanager is
 # present (e.g. xcompmgr, compiz, etc.).
-#transparency = 15
-transparency = 0
+transparency = 5
 
 # Don't remove messages, if the user is idle (no mouse or keyboard input)
 # for longer than idle_threshold seconds.
@@ -128,7 +127,6 @@ padding = 8
 horizontal_padding = 8
 
 # Defines color of the frame around the notification window.
-#frame_color = "#171717"
 frame_color = "#{{base05-hex}}"
 
 # Define a color for the separator.
@@ -141,7 +139,7 @@ separator_color = "#{{base05-hex}}"
 
 # Defines width in pixels of frame around the notification window.
 # Set to 0 to disable.
-frame_width = 2
+frame_width = 0
 
 # Print a notification on startup.
 # This is mainly for error detection, since dbus (re-)starts dunst
@@ -176,7 +174,6 @@ mouse_left_click = close_current
 mouse_middle_click = do_action
 mouse_right_click = close_all
 
-
 [shortcuts]
 
 # Shortcuts are specified as [modifier+][modifier+]...key
@@ -199,25 +196,22 @@ history = ctrl+grave
 context = ctrl+shift+period
 
 [urgency_low]
-    urgency = low
-    background = "#{{base01-hex}}"
-    foreground = "#{{base03-hex}}"
-    timeout = 5
+  urgency = low
+  background = "#{{base01-hex}}"
+  foreground = "#{{base03-hex}}"
+  timeout = 5
 
 [urgency_normal]
-    urgency = normal
-    background = "#{{base02-hex}}"
-    foreground = "#{{base05-hex}}"
-    timeout = 10
+  urgency = normal
+  background = "#{{base02-hex}}"
+  foreground = "#{{base05-hex}}"
+  timeout = 10
 
 [urgency_critical]
-    urgency = critical
-    background = "#{{base08-hex}}"
-    foreground = "#{{base06-hex}}"
-    timeout = 20
-#122234
-# Icon for notifications with critical urgency, uncomment to enable
-#icon = /path/to/icon
+  urgency = critical
+  background = "#{{base08-hex}}"
+  foreground = "#{{base06-hex}}"
+  timeout = 20
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
