@@ -1,0 +1,151 @@
+add_newline = true
+
+prompt_order = [
+    "directory",
+    "git_branch",
+    "git_state",
+    "git_status",
+    "kubernetes",
+    "cmd_duration",
+    "line_break",
+    "jobs",
+    "character",
+]
+
+[character]
+disabled = false
+symbol = "➜"
+
+[directory]
+disabled = false
+truncation_length = 2
+truncate_to_repo = true
+fish_style_pwd_dir_length = 1
+style = "bold yellow"
+
+[hostname]
+disabled = true
+
+[line_break]
+disabled = false
+
+[username]
+disabled = true
+
+## Shell
+
+[cmd_duration]
+disabled = false
+
+[env_var]
+disabled = false
+
+[jobs]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+## Infrastructure
+
+[aws]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[kubernetes]
+disabled = false
+
+[terraform]
+disabled = true
+
+## Package management
+
+[conda]
+disabled = true
+
+[package]
+disabled = true
+
+## Version Control
+
+[git_branch]
+disabled = false
+
+[git_commit]
+disabled = true
+
+[git_state]
+disabled = false
+
+[git_status]
+disabled = false
+
+[hg_branch]
+disabled = true
+
+## Hardware
+
+[battery]
+disabled = true
+
+[memory_usage]
+disabled = true
+
+[time]
+disabled = true
+
+## Programming Languages
+
+[crystal]
+disabled = true
+
+[dotnet]
+disabled = true
+
+[elixir]
+disabled = true
+
+[elm]
+disabled = true
+
+[erlang]
+disabled = true
+
+[golang]
+disabled = true
+
+[java]
+disabled = true
+
+[julia]
+disabled = true
+
+[nim]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[ocaml]
+disabled = true
+
+[php]
+disabled = true
+
+[purescript]
+disabled = true
+
+[python]
+disabled = true
+
+[ruby]
+disabled = true
+
+[rust]
+disabled = true
+
+[zig]
+disabled = true
+
