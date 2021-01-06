@@ -9,8 +9,10 @@ alias yayu='yay -Syua --noconfirm'
 alias pacls="pacman -Qqe | fzf-tmux -m --preview 'pacman -Qi {1}' > /dev/null"
 alias pacunlock="rm /var/lib/pacman/db.lck"
 
-alias vim='nvim'
-alias vimdiff='nvim -d'
-
-alias kc="kubectl"
 alias mux="tmuxinator"
+
+alias k="kubectl"
+alias kc="kct"
+alias kn="kubens"
+alias kx="kubectx"
+alias kt="kubetail"
