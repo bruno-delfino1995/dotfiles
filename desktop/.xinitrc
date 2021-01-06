@@ -3,5 +3,12 @@
 # shellcheck source=.xprofile
 [ -f ~/.xprofile ] && source ~/.xprofile
 
-exec bspwm
-
+case $XDG_VTNR in
+	1)
+		sxhkd &
+		exec bspwm
+	;;
+	2)
+		exec awesome
+	;;
+esac

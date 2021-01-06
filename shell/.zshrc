@@ -1,8 +1,9 @@
 # Start X Server
-if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
+if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -le 2 ]; then
   logfile="$HOME/.startx.log"
   [ -e "$logfile" ] && mv "$logfile" "$HOME/.previous-startx.log"
-  exec startx &> "$logfile"
+
+  exec startx ~/.xinitrc &> "$logfile"
 fi
 
 # Config
