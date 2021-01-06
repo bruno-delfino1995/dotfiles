@@ -30,7 +30,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/Dropbox/org/")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -72,3 +72,7 @@
 (after! ivy (advice-remove #'evil-ex #'+ivy--inhibit-completion-in-region-a))
 
 (add-hook 'dired-after-readin-hook 'dired-hide-details-mode)
+
+(use-package deft
+  :config
+  (setq deft-directory "~/Dropbox/deft" deft-extensions '("md")))
