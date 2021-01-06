@@ -117,7 +117,7 @@ super + bracket{left,right}
 
 # focus the last and prev local node
 super + {_,shift + }Tab
-	bspc node -f {next,prev}.local
+	bspc node -f {next,prev}.!hidden.window.local
 
 # focus the older or newer node in the focus history
 super + {o,i}
