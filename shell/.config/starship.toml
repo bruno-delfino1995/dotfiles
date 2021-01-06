@@ -81,6 +81,7 @@ disabled = false
 
 [git_status]
 disabled = false
+stashed = ""
 
 [hg_branch]
 disabled = true
