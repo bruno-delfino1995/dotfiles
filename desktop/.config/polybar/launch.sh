@@ -7,9 +7,14 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch default bars for non primary monitors
-for m in $(xrandr --query | grep '\bconnected\b' | grep -v '\bprimary\b'| cut -d" " -f1); do
-  MONITOR=$m polybar --reload default &
+for m in $(xrandr -q | grep '\bconnected\b' | grep -v '\bprimary\b'| cut -d" " -f1); do
+  MONITOR=$m polybar --reload secondary &
 done
 
-MONITOR=$(xrandr --query | grep '\bconnected\b' | grep '\bprimary\b'| cut -d" " -f1) \
-  polybar --reload primary &
+if [[ $(xrandr -q | grep '\bconnected\b' | wc -l) -eq 1 ]]; then
+	MONITOR=$(xrandr -q | grep '\bconnected\b' | grep '\bprimary\b' | cut -d" " -f1) \
+		polybar --reload default &
+else
+	MONITOR=$(xrandr -q | grep '\bconnected\b' | grep '\bprimary\b' | cut -d" " -f1) \
+		polybar --reload primary &
+fi

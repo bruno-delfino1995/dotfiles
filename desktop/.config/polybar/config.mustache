@@ -48,48 +48,7 @@ font-1 = "PolybarIcons:fontformat=truetype:size=12:antialias=true;2"
 
 modules-left = bspwm
 modules-center =
-modules-right = filesystem memory cpu temperature battery sep wlan eth
-
-tray-position = none
-
-wm-restack = bspwm
-override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-[bar/primary]
-monitor = ${env:MONITOR:}
-width = 100%
-height = 32
-bottom = true
-offset-x = 0
-offset-y = 0
-fixed-center = true
-
-background = ${colors.base00}
-foreground = ${colors.base05}
-
-line-size = ${sizes.workspace-bottom}
-
-border-top-size = ${sizes.border-top}
-border-color = ${colors.base05}
-
-padding-left = 2
-padding-right = 2
-
-module-margin-left = 1
-module-margin-right = 1
-
-font-0 = "Lexend Deca:fontformat=truetype:size=12:antialias=true;2"
-font-1 = "PolybarIcons:fontformat=truetype:size=12:antialias=true;2"
-
-modules-left = bspwm
-modules-center =
-modules-right = pulseaudio sep date
+modules-right = battery sep pulseaudio sep date
 
 tray-position = right
 tray-padding = 2
@@ -104,6 +63,22 @@ override-redirect = true
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[bar/primary]
+inherit = bar/default
+
+modules-left = bspwm
+modules-center =
+modules-right = pulseaudio sep date
+
+[bar/secondary]
+inherit = bar/default
+
+modules-left = bspwm
+modules-center =
+modules-right = filesystem memory cpu temperature battery sep wlan eth
+
+tray-position = none
 
 [module/sep]
 type = custom/script
