@@ -15,8 +15,6 @@ xss-lock de-lock &
 
 xset r rate 250 30
 
-picom &
 dunst &
-dapper -u &
 
 emacs --daemon
