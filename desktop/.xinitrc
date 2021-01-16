@@ -5,10 +5,10 @@
 
 case $XDG_VTNR in
 	1)
-		sxhkd &
-		exec bspwm
+		exec awesome
 	;;
 	2)
-		exec awesome
+		sxhkd &
+		exec bspwm
 	;;
 esac
