@@ -20,6 +20,10 @@ Plug 'mhinz/vim-startify'
 Plug 'mbbill/undotree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'reedes/vim-pencil'
+Plug 'arthurxavierx/vim-caser'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-fold'
+Plug 'kana/vim-textobj-entire'
 
 call plug#end()
 
