@@ -1,14 +1,8 @@
 #!/bin/bash
 
-# shellcheck source=.xprofile
+xrandr --auto
+autorandr --change
+
 [ -f ~/.xprofile ] && source ~/.xprofile
 
-case $XDG_VTNR in
-	1)
-		exec awesome
-	;;
-	2)
-		sxhkd &
-		exec bspwm
-	;;
-esac
+exec awesome

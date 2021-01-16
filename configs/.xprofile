@@ -1,7 +1,5 @@
 #!/bin/bash
 
-xrandr --auto
-autorandr --change
 redshift -P -O 4500
 
 xrdb -I"$HOME" ~/.Xresources
