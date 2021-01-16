@@ -4,14 +4,14 @@ colorscheme.yaml
 
 # compiled
 *.tmp
-desktop/.Xresources.d/colors
-desktop/.config/alacritty/alacritty.yml
-desktop/.config/rofi/config.rasi
-shell/.profile
-nvim/.config/nvim/colors/base16.vim
-desktop/.config/zathura/zathurarc
-desktop/.config/dunst/dunstrc
-desktop/.local/bin/de-lock
-desktop/.config/bspwm/bspwmrc
-desktop/.config/polybar/config
-desktop/.config/picom/picom.conf
+configs/.config/alacritty/alacritty.yml
+configs/.config/bspwm/bspwmrc
+configs/.config/dunst/dunstrc
+configs/.config/nvim/colors/base16.vim
+configs/.config/picom/picom.conf
+configs/.config/polybar/config
+configs/.config/rofi/config.rasi
+configs/.config/zathura/zathurarc
+configs/.local/bin/de-lock
+configs/.profile
+configs/.Xresources.d/colors

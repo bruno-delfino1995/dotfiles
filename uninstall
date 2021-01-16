@@ -4,9 +4,7 @@ INSTALLATION="$HOME/.dfiles"
 
 cd "$INSTALLATION" || exit 1
 
-for package in $(fd --type d --max-depth=1 --exclude "colorschemes"); do
-  stow -t "$HOME" -D "$package"
-done
+stow -t "$HOME" -D "configs"
 
 cd "$DIR" || exit 1
 

@@ -26,20 +26,19 @@ function setup_local_installation() {
   fi
 }
 
-function install_packages() {
+function install_configs() {
   cd "$INSTALLATION" || exit 1
 
-  for package in $(fd --type d --max-depth=1 --exclude "colorschemes"); do
-    package_dirs=$(fd -H --type d . "$package" | sed "s|^$package/|$HOME/|" | uniq | sort)
-    if [[ -n "$package_dirs" ]]; then
-      echo "$package_dirs" | xargs mkdir -p
-    fi
-    stow -t "$HOME" -S "$package"
-  done
+  package="configs"
+  package_dirs=$(fd -H --type d . "$package" | sed "s|^$package/|$HOME/|" | uniq | sort)
+  if [[ -n "$package_dirs" ]]; then
+    echo "$package_dirs" | xargs mkdir -p
+  fi
+  stow -t "$HOME" -S "$package"
 }
 
 
-function build_packages() {
+function build_configs() {
   cd "$INSTALLATION" || exit 1
 
   stat "$COLORSCHEME" > /dev/null || exit 1
@@ -59,6 +58,6 @@ function build_packages() {
 }
 
 setup_local_installation
-build_packages
-install_packages
+build_configs
+install_configs
 
