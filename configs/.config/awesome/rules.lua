@@ -34,20 +34,31 @@ awful.rules.rules = {
 			placement = awful.placement.no_overlap + awful.placement.no_offscreen
 		}
 	},
-	-- Floating clients.
+	-- Popup clients
 	{
 		rule_any = {
-			instance = {
-				"pinentry"
-			},
-			class = {},
-			-- Note that the name property shown in xprop might be set slightly after creation of the client
-			-- and the name shown there might not match defined rules here.
-			name = {},
-			role = {}
+			role = {"Popup"}
 		},
-		properties = {floating = true}
+		properties = {
+			border_width = 0,
+			floating = true
+		}
 	}
+
+	-- Floating clients.
+	-- {
+	-- 	rule_any = {
+	-- 		instance = {
+	-- 			"pinentry"
+	-- 		},
+	-- 		class = {},
+	-- 		-- Note that the name property shown in xprop might be set slightly after creation of the client
+	-- 		-- and the name shown there might not match defined rules here.
+	-- 		name = {},
+	-- 		role = {}
+	-- 	},
+	-- 	properties = {floating = true}
+	-- },
 
 	-- Add titlebars to normal clients and dialogs
 	-- {
