@@ -12,5 +12,3 @@ xset s 600
 xss-lock de-lock &
 
 xset r rate 250 30
-
-emacs --daemon
