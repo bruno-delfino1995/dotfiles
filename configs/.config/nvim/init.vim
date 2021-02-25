@@ -150,6 +150,7 @@ let g:startify_bookmarks = [
   \ { 'c': '~/.dfiles' }
   \ ]
 " }}}
+" }}}
 " Key Mappings {{{
 
 let mapleader="\<space>"
@@ -179,6 +180,9 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " }}}
+" }}}
+" Auto Commands {{{
+autocmd BufWritePre * %s/\s\+$//e " remove trailing whitespaces
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
