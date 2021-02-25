@@ -1,20 +1,22 @@
 add_newline = true
 
-prompt_order = [
-    "directory",
-    "git_branch",
-    "git_state",
-    "git_status",
-    "kubernetes",
-    "cmd_duration",
-    "line_break",
-    "jobs",
-    "character",
-]
+format = """\
+	$directory\
+	$git_branch\
+	$git_state\
+	$git_status\
+	$kubernetes\
+	$cmd_duration\
+	$line_break\
+	$jobs\
+	$character\
+"""
 
 [character]
 disabled = false
-symbol = "➜"
+success_symbol = "[→](bold green)"
+error_symbol = "[→](bold red)"
+vicmd_symbol = "[←](bold green)"
 
 [directory]
 disabled = false
