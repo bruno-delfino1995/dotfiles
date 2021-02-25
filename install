@@ -20,7 +20,7 @@ fi
 cd "$DIR" || exit 1
 
 function setup_local_installation() {
-  if git show-ref --verify --quiet refs/heads/$BRANCH; then
+  if ! git show-ref --verify --quiet refs/heads/$BRANCH; then
     git branch "$BRANCH" > /dev/null 2> /dev/null
     git worktree add "$INSTALLATION" "$BRANCH" > /dev/null 2> /dev/null
   fi
