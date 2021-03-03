@@ -86,9 +86,7 @@ awful.layout.layouts = {
 }
 -- }}}
 
-require("menu")
 require("exitscreen")
-require("mouse")
 require("keys")
 require("bar")
 require("rules")
