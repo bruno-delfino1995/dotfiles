@@ -83,7 +83,7 @@ disabled = false
 
 [git_status]
 disabled = false
-stashed = ""
+format = '([\[$conflicted$deleted$renamed$modified$staged$untracked$ahead_behind\]]($style))'
 
 [hg_branch]
 disabled = true
