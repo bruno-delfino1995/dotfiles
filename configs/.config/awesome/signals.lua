@@ -38,8 +38,7 @@ client.connect_signal(
 	"request::titlebars",
 	function(c)
 		-- buttons for the titlebar
-		local buttons =
-			gears.table.join(
+		local buttons = gears.table.join(
 			awful.button(
 				{},
 				1,
@@ -58,7 +57,7 @@ client.connect_signal(
 			)
 		)
 
-		awful.titlebar(c):setup {
+		awful.titlebar(c):setup({
 			{
 				-- Left
 				awful.titlebar.widget.iconwidget(c),
@@ -85,7 +84,7 @@ client.connect_signal(
 				layout = wibox.layout.fixed.horizontal()
 			},
 			layout = wibox.layout.align.horizontal
-		}
+		})
 	end
 )
 

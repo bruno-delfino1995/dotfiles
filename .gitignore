@@ -5,6 +5,7 @@ colorscheme.yaml
 # compiled
 *.tmp
 configs/.config/alacritty/alacritty.yml
+configs/.config/awesome/colors.lua
 configs/.config/bspwm/bspwmrc
 configs/.config/dunst/dunstrc
 configs/.config/nvim/colors/base16.vim

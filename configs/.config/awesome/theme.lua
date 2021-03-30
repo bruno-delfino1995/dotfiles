@@ -1,39 +1,198 @@
----------------------------
--- Default awesome theme --
----------------------------
+local awful = require("awful")
 
-local theme_assets = require("beautiful.theme_assets")
+local gears = require("gears")
+local gfs = require("gears.filesystem")
+
+local helpers = require("helpers")
+
 local xresources = require("beautiful.xresources")
+local colors = require("colors")
 local dpi = xresources.apply_dpi
 
-local gfs = require("gears.filesystem")
+local theme_assets = require("beautiful.theme_assets")
+local themes_path = gfs.get_themes_dir()
 local assets_path = gfs.get_configuration_dir() .. "assets/"
-
-local gs = require("gears.shape")
 
 local naughty = require("naughty")
 local nconf = naughty.config
 
-local theme = {}
+-- Inherit default theme
 
-theme.font = "Lexend Deca:fontformat=truetype:size=12:antialias=true;2"
+local theme = dofile(themes_path .. "default/theme.lua")
+theme.wallpaper = gfs.get_configuration_dir() .. "images/background.png"
 
-theme.bg_normal = "#222222"
-theme.bg_focus = "#535d6c"
-theme.bg_urgent = "#ff0000"
-theme.bg_minimize = "#444444"
-theme.bg_systray = theme.bg_normal
+-- Configure icons theme
 
-theme.fg_normal = "#aaaaaa"
-theme.fg_focus = "#ffffff"
-theme.fg_urgent = "#ffffff"
-theme.fg_minimize = "#ffffff"
+theme.icon_theme = "/usr/share/icons/Numix/22/status/:/usr/share/icons/Numix/22/devices/"
+
+-- Fonts
+
+theme.font_name = "Lexend Deca"
+theme.font = theme.font_name .. ":fontformat=truetype:size=12:antialias=true;2"
+theme.icon_font = "FiraCode Nerd Font Mono 18"
+theme.font_taglist = "FiraCode Nerd Font Mono 13"
+theme.max_font = "FiraCode Nerd Font Mono 10"
+
+-- Background Colors
+
+theme.bg_dark = colors.base00
+theme.bg_normal = colors.background
+theme.bg_focus = colors.base00
+theme.bg_urgent = colors.base08
+theme.bg_minimize = colors.base08
+
+-- Foreground Colors
+
+theme.fg_normal = colors.base07
+theme.fg_focus = colors.base04
+theme.fg_urgent = colors.base03
+theme.fg_minimize = colors.base08
+
+theme.button_close = colors.base01
+
+-- Borders
+
+theme.border_width = dpi(2)
+theme.oof_border_width = dpi(0)
+theme.border_normal = colors.base00
+theme.border_focus = colors.base0B
+theme.border_radius = dpi(12)
+theme.client_radius = dpi(12)
+theme.widget_border_width = dpi(1)
+theme.widget_border_color = colors.base00
+
+-- Taglist
+
+local taglist_square_size = dpi(0)
+theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
+theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
+theme.taglist_font = theme.font_taglist
+theme.taglist_bg = theme.wibar_bg
+theme.taglist_bg_focus = colors.base01
+theme.taglist_fg_focus = colors.base05
+theme.taglist_bg_urgent = colors.base03
+theme.taglist_fg_urgent = colors.base07
+theme.taglist_bg_occupied = colors.base00
+theme.taglist_fg_occupied = colors.base05
+theme.taglist_bg_empty = colors.base00
+theme.taglist_fg_empty = colors.base03
+theme.taglist_bg_volatile = transparent
+theme.taglist_fg_volatile = colors.base0B
+theme.taglist_disable_icon = true
+-- theme.taglist_shape_focus = helpers.rrect(theme.border_radius - 3)
+
+-- Tasklist
+
+theme.tasklist_font = theme.font
+theme.tasklist_plain_task_name = true
+theme.tasklist_bg_focus = colors.base00
+theme.tasklist_fg_focus = colors.base06
+theme.tasklist_bg_minimize = colors.base00
+theme.tasklist_fg_minimize = colors.foreground
+theme.tasklist_bg_normal = colors.base00
+theme.tasklist_fg_normal = colors.foreground
+theme.tasklist_disable_task_name = false
+theme.tasklist_disable_icon = true
+theme.tasklist_bg_urgent = colors.base00
+theme.tasklist_fg_urgent = colors.base01
+theme.tasklist_align = "center"
+
+-- Titlebars
+
+theme.titlebar_size = dpi(40)
+theme.titlebar_height = dpi(20)
+theme.titlebar_bg_focus = colors.background
+theme.titlebar_bg_normal = colors.background
+theme.titlebar_fg_normal = colors.base08
+theme.titlebar_fg_focus = colors.base0F
+
+-- Edge snap
+
+theme.snap_bg = colors.base08
+theme.snap_shape = helpers.rrect(0)
+
+-- Prompts
+
+theme.prompt_bg = transparent
+theme.prompt_fg = colors.foreground
+
+-- Tooltips
+
+theme.tooltip_bg = colors.background
+theme.tooltip_fg = colors.foreground
+theme.tooltip_font = theme.font_name .. ":size=12"
+theme.tooltip_border_width = theme.widget_border_width - 1
+theme.tooltip_border_color = colors.base00
+theme.tooltip_opacity = 1
+theme.tooltip_align = "left"
+
+-- Menu
+
+theme.menu_font = theme.font
+theme.menu_bg_focus = colors.base04
+theme.menu_fg_focus = colors.base07
+theme.menu_bg_normal = colors.background
+theme.menu_fg_normal = colors.base07
+theme.menu_submenu_icon = assets_path .. "submenu.png"
+theme.menu_height = dpi(20)
+theme.menu_width = dpi(130)
+theme.menu_border_color = "#0000000"
+theme.menu_border_width = theme.border_width
+
+-- Hotkeys Pop Up
+
+theme.hotkeys_font = theme.font
+theme.hotkeys_border_color = colors.base00
+theme.hotkeys_group_margin = dpi(40)
+theme.hotkeys_shape = helpers.custom_shape
+
+-- Layout List
+
+theme.layoutlist_border_color = colors.base08
+theme.layoutlist_border_width = theme.border_width
+-- Recolor Layout icons:
+theme = theme_assets.recolor_layout(theme, colors.foreground)
+
+-- Gaps
 
 theme.useless_gap = dpi(3)
-theme.border_width = dpi(2)
-theme.border_normal = "#000000"
-theme.border_focus = "#535d6c"
-theme.border_marked = "#91231c"
+
+-- Exit Screen
+
+theme.exit_screen_fg = colors.foreground
+theme.exit_screen_bg = colors.base00
+
+-- Wibar
+
+theme.wibar_height = dpi(34) + theme.widget_border_width
+theme.wibar_margin = dpi(15)
+theme.wibar_spacing = dpi(15)
+theme.wibar_bg = colors.background
+
+-- Systray
+
+theme.systray_icon_spacing = dpi(10)
+theme.bg_systray = colors.base00
+theme.systray_icon_size = dpi(15)
+
+-- Tabs
+
+theme.mstab_bar_height = dpi(60)
+theme.mstab_bar_padding = dpi(0)
+theme.mstab_border_radius = dpi(6)
+theme.tabbar_style = "modern"
+theme.tabbar_bg_focus = colors.background
+theme.tabbar_bg_normal = colors.base00
+theme.tabbar_fg_focus = colors.base08
+theme.tabbar_fg_normal = colors.base0F
+theme.tabbar_position = "bottom"
+theme.tabbar_AA_radius = 0
+theme.mstab_bar_ontop = true
+
+-- Naugthy configs
+
+theme.notification_font = "Lexend Deca:fontformat=truetype:size=12:antialias=true;2"
+theme.notification_spacing = 10
 
 nconf.defaults.border_width = 0
 nconf.defaults.margin = 16
@@ -54,74 +213,31 @@ nconf.presets.normal.bg = theme.bg_focus
 nconf.presets.normal.fg = theme.fg_focus
 nconf.presets.normal.timeout = 10
 
-theme.notification_font = "Lexend Deca:fontformat=truetype:size=12:antialias=true;2"
+-- Titlebar layout icons
 
--- There are other variable sets
--- overriding the default one when
--- defined, the sets are:
--- taglist_[bg|fg]_[focus|urgent|occupied|empty|volatile]
--- tasklist_[bg|fg]_[focus|urgent]
--- titlebar_[bg|fg]_[normal|focus]
--- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
--- mouse_finder_[color|timeout|animate_timeout|radius|factor]
--- prompt_[fg|bg|fg_cursor|bg_cursor|font]
--- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
--- Example:
---theme.taglist_bg_focus = "#ff0000"
-
--- Generate taglist squares:
-local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
-
--- Variables set for theming notifications:
--- notification_font
--- notification_[bg|fg]
--- notification_[width|height|margin]
--- notification_[border_color|border_width|shape|opacity]
-
--- Variables set for theming the menu:
--- menu_[bg|fg]_[normal|focus]
--- menu_[border_color|border_width]
-theme.menu_submenu_icon = assets_path .. "submenu.png"
-theme.menu_height = dpi(15)
-theme.menu_width = dpi(100)
-
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
-
--- Define the image to load
 theme.titlebar_close_button_normal = assets_path .. "titlebar/close_normal.png"
 theme.titlebar_close_button_focus = assets_path .. "titlebar/close_focus.png"
-
 theme.titlebar_minimize_button_normal = assets_path .. "titlebar/minimize_normal.png"
 theme.titlebar_minimize_button_focus = assets_path .. "titlebar/minimize_focus.png"
-
 theme.titlebar_ontop_button_normal_inactive = assets_path .. "titlebar/ontop_normal_inactive.png"
 theme.titlebar_ontop_button_focus_inactive = assets_path .. "titlebar/ontop_focus_inactive.png"
 theme.titlebar_ontop_button_normal_active = assets_path .. "titlebar/ontop_normal_active.png"
 theme.titlebar_ontop_button_focus_active = assets_path .. "titlebar/ontop_focus_active.png"
-
 theme.titlebar_sticky_button_normal_inactive = assets_path .. "titlebar/sticky_normal_inactive.png"
 theme.titlebar_sticky_button_focus_inactive = assets_path .. "titlebar/sticky_focus_inactive.png"
 theme.titlebar_sticky_button_normal_active = assets_path .. "titlebar/sticky_normal_active.png"
 theme.titlebar_sticky_button_focus_active = assets_path .. "titlebar/sticky_focus_active.png"
-
 theme.titlebar_floating_button_normal_inactive = assets_path .. "titlebar/floating_normal_inactive.png"
 theme.titlebar_floating_button_focus_inactive = assets_path .. "titlebar/floating_focus_inactive.png"
 theme.titlebar_floating_button_normal_active = assets_path .. "titlebar/floating_normal_active.png"
 theme.titlebar_floating_button_focus_active = assets_path .. "titlebar/floating_focus_active.png"
-
 theme.titlebar_maximized_button_normal_inactive = assets_path .. "titlebar/maximized_normal_inactive.png"
 theme.titlebar_maximized_button_focus_inactive = assets_path .. "titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_active = assets_path .. "titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active = assets_path .. "titlebar/maximized_focus_active.png"
 
-theme.wallpaper = assets_path .. "background.png"
+-- Wibar layout icons
 
--- You can use your own layout icons like this:
 theme.layout_fairh = assets_path .. "layouts/fairhw.png"
 theme.layout_fairv = assets_path .. "layouts/fairvw.png"
 theme.layout_floating = assets_path .. "layouts/floatingw.png"
@@ -138,12 +254,5 @@ theme.layout_cornernw = assets_path .. "layouts/cornernww.png"
 theme.layout_cornerne = assets_path .. "layouts/cornernew.png"
 theme.layout_cornersw = assets_path .. "layouts/cornersww.png"
 theme.layout_cornerse = assets_path .. "layouts/cornersew.png"
-
--- Generate Awesome icon:
-theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.bg_focus, theme.fg_focus)
-
--- Define the icon theme for application icons. If not set then the icons
--- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = "/usr/share/icons/Numix/22/status/:/usr/share/icons/Numix/22/devices/"
 
 return theme

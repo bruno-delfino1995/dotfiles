@@ -6,19 +6,20 @@ local naughty = require("naughty")
 local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
-local shape = require("gears.shape")
+local helpers = require("helpers")
+local colors = require("colors")
 
 -- Appearance
-local icon_font = "Lexend Deca 45"
-local poweroff_text_icon = "pf"
-local reboot_text_icon = "re"
-local reload_text_icon = "rl"
-local suspend_text_icon = "su"
-local exit_text_icon = "ex"
-local lock_text_icon = "lo"
+local icon_font = "system 45"
+local poweroff_text_icon = ""
+local reboot_text_icon = ""
+local reload_text_icon = ""
+local suspend_text_icon = ""
+local exit_text_icon = ""
+local lock_text_icon = ""
 local exitscreen_bg = "#1d1f21"
 
-local button_bg = beautiful.xcolor0
+local button_bg = colors.base00
 local button_size = dpi(120)
 
 -- Commands
@@ -28,24 +29,19 @@ end
 local reboot_command = function()
 	awful.spawn.with_shell("systemctl reboot")
 end
-local reload_command = function()
-	awful.spawn.with_shell("~/.dfiles/install")
-	awesome.restart()
-end
 local suspend_command = function()
 	awful.spawn.with_shell("systemctl suspend")
 end
 local exit_command = function()
-	awesome.quit()
+	awful.spawn.with_shell("loginctl terminate-session $XDG_SESSION_ID")
 end
 local lock_command = function()
-	awful.spawn.with_shell("de-lock")
+	awful.spawn.with_shell("loginctl lock-session")
 end
 
 -- Helper function that generates the clickable buttons
 local create_button = function(symbol, hover_color, text, command)
-	local icon =
-		wibox.widget {
+	local icon = wibox.widget({
 		forced_height = button_size,
 		forced_width = button_size,
 		align = "center",
@@ -53,19 +49,18 @@ local create_button = function(symbol, hover_color, text, command)
 		font = icon_font,
 		text = symbol,
 		widget = wibox.widget.textbox()
-	}
+	})
 
-	local button =
-		wibox.widget {
+	local button = wibox.widget({
 		{nil, icon, expand = "none", layout = wibox.layout.align.horizontal},
 		forced_height = button_size,
 		forced_width = button_size,
 		border_width = dpi(3),
 		border_color = button_bg,
-		-- shape = shape.rounded_rect(10),
+		shape = helpers.rrect(10),
 		bg = button_bg,
 		widget = wibox.container.background
-	}
+	})
 
 	-- Bind left click to run the command
 	button:buttons(
@@ -84,38 +79,37 @@ local create_button = function(symbol, hover_color, text, command)
 	button:connect_signal(
 		"mouse::enter",
 		function()
-			-- icon.markup = helpers.colorize_text(icon.text, hover_color)
+			icon.markup = helpers.colorize_text(icon.text, hover_color)
 			button.border_color = hover_color
 		end
 	)
 	button:connect_signal(
 		"mouse::leave",
 		function()
-			-- icon.markup = helpers.colorize_text(icon.text, beautiful.xforeground)
+			icon.markup = helpers.colorize_text(icon.text, colors.foreground)
 			button.border_color = button_bg
 		end
 	)
 
 	-- Use helper function to change the cursor on hover
-	-- helpers.add_hover_cursor(button, "hand1")
+	helpers.add_hover_cursor(button, "hand1")
 
 	return button
 end
 
 -- Create the buttons
-local poweroff = create_button(poweroff_text_icon, beautiful.xcolor1, "Poweroff", poweroff_command)
-local reboot = create_button(reboot_text_icon, beautiful.xcolor2, "Reboot", reboot_command)
-local reload = create_button(reload_text_icon, beautiful.xcolor6, "Reload", reload_command)
-local suspend = create_button(suspend_text_icon, beautiful.xcolor3, "Suspend", suspend_command)
-local exit = create_button(exit_text_icon, beautiful.xcolor4, "Exit", exit_command)
-local lock = create_button(lock_text_icon, beautiful.xcolor5, "Lock", lock_command)
+local poweroff = create_button(poweroff_text_icon, colors.base08, "Poweroff", poweroff_command)
+local reboot = create_button(reboot_text_icon, colors.base0B, "Reboot", reboot_command)
+local suspend = create_button(suspend_text_icon, colors.base0A, "Suspend", suspend_command)
+local exit = create_button(exit_text_icon, colors.base0D, "Exit", exit_command)
+local lock = create_button(lock_text_icon, colors.base0E, "Lock", lock_command)
 
 -- Create the exit screen wibox
 exit_screen = wibox({visible = false, ontop = true, type = "splash"})
 awful.placement.maximize(exit_screen)
 
-exit_screen.bg = beautiful.exit_screen_bg or exitscreen_bg or "#111111"
-exit_screen.fg = beautiful.exit_screen_fg or beautiful.wibar_fg or "#FEFEFE"
+exit_screen.bg = colors.background
+exit_screen.fg = colors.foreground
 
 local exit_screen_grabber
 function exit_screen_hide()
@@ -123,8 +117,7 @@ function exit_screen_hide()
 	exit_screen.visible = false
 end
 function exit_screen_show()
-	exit_screen_grabber =
-		awful.keygrabber.run(
+	exit_screen_grabber = awful.keygrabber.run(
 		function(_, key, event)
 			-- Ignore case
 			key = key:lower()
@@ -151,39 +144,23 @@ function exit_screen_show()
 			end
 		end
 	)
+
 	exit_screen.visible = true
 end
 
 exit_screen:buttons(
-	gears.table.join( -- Left click - Hide exit_screen
-		awful.button(
-			{},
-			1,
-			function()
-				exit_screen_hide()
-			end
-		),
+	gears.table.join(
+		-- Left click - Hide exit_screen
+		awful.button({}, 1, exit_screen_hide),
 		-- Middle click - Hide exit_screen
-		awful.button(
-			{},
-			2,
-			function()
-				exit_screen_hide()
-			end
-		),
+		awful.button({}, 2, exit_screen_hide),
 		-- Right click - Hide exit_screen
-		awful.button(
-			{},
-			3,
-			function()
-				exit_screen_hide()
-			end
-		)
+		awful.button({}, 3, exit_screen_hide)
 	)
 )
 
 -- Item placement
-exit_screen:setup {
+exit_screen:setup({
 	nil,
 	{
 		nil,
@@ -202,4 +179,4 @@ exit_screen:setup {
 	},
 	expand = "none",
 	layout = wibox.layout.align.vertical
-}
+})
