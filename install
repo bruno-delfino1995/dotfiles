@@ -6,15 +6,13 @@ CURRENT_COLORSCHEME="$INSTALLATION/colorscheme.yaml"
 COLORSCHEME="$CURRENT_COLORSCHEME"
 
 if [[ -z "$1" && ! -e "$CURRENT_COLORSCHEME" ]]; then
-  echo "You don't have a installed colorscheme, please select a base16 colorscheme yaml file"
+  echo "You don't have an installed colorscheme, please select a base16 scheme file"
   exit 1
-elif [[ ! -e "$1" && ! -e "$INSTALLATION/colorschemes/$1" ]]; then
-  echo "The specified file doesn't exist neither at \"$1\" nor at \"$INSTALLATION/colorschemes/$1\""
+elif [[ -n "$1" && ! -e "$1" ]]; then
+  echo "The specified file doesn't exist"
   exit 1
 elif [[ -n "$1" && -e "$1" ]]; then
   COLORSCHEME=$(realpath "$1")
-elif [[ -n "$1" ]]; then
-  COLORSCHEME="$INSTALLATION/colorschemes/$1"
 fi
 
 cd "$DIR" || exit 1
@@ -37,7 +35,6 @@ function install_configs() {
   stow -t "$HOME" -S "$package"
 }
 
-
 function build_configs() {
   cd "$INSTALLATION" || exit 1
 
@@ -51,7 +48,12 @@ function build_configs() {
     target="${template%.mustache}"
     tmp="${template/%.mustache/.tmp}"
 
-    ./colorscheme.rb "$CURRENT_COLORSCHEME" | mustache - "$template" > "$tmp"
+    theme=$(python build-base16-json.py \
+      "$(yq '.' "$CURRENT_COLORSCHEME")" \
+      "$(basename "$CURRENT_COLORSCHEME")")
+
+    echo "$theme" | mustache - "$template" > "$tmp"
+
     mv "$tmp" "$target"
     chmod --reference="$template" "$target"
   done
@@ -60,4 +62,3 @@ function build_configs() {
 setup_local_installation
 build_configs
 install_configs
-
