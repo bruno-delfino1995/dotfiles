@@ -14,6 +14,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+local sharedtags = require("sharedtags")
+
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
@@ -210,6 +212,7 @@ globalkeys = gears.table.join(
 		end,
 		{description = "show the rofi launcher", group = "launcher"}
 	),
+	-- Volume
 	awful.key(
 		{},
 		"XF86AudioRaiseVolume",
@@ -231,7 +234,7 @@ globalkeys = gears.table.join(
 			awful.util.spawn_with_shell("amixer -D pulse sset Master toggle")
 		end
 	),
-
+	-- Player
 	awful.key(
 		{},
 		"XF86AudioPlay",
@@ -253,6 +256,7 @@ globalkeys = gears.table.join(
 			awful.util.spawn_with_shell("playerctl previous")
 		end
 	),
+	-- Print
 	awful.key(
 		{"Control"},
 		"Print",
@@ -315,69 +319,26 @@ clientkeys = gears.table.join(
 			c:move_to_screen()
 		end,
 		{description = "move to screen", group = "client"}
-	),
-	awful.key(
-		{modkey},
-		"t",
-		function(c)
-			c.ontop = not c.ontop
-		end,
-		{description = "toggle keep on top", group = "client"}
-	),
-	awful.key(
-		{modkey},
-		"n",
-		function(c)
-			-- The client currently has the input focus, so it cannot be
-			-- minimized, since minimized clients can't have the focus.
-			c.minimized = true
-		end,
-		{description = "minimize", group = "client"}
-	),
-	awful.key(
-		{modkey},
-		"m",
-		function(c)
-			c.maximized = not c.maximized
-			c:raise()
-		end,
-		{description = "(un)maximize", group = "client"}
-	),
-	awful.key(
-		{modkey, "Control"},
-		"m",
-		function(c)
-			c.maximized_vertical = not c.maximized_vertical
-			c:raise()
-		end,
-		{description = "(un)maximize vertically", group = "client"}
-	),
-	awful.key(
-		{modkey, "Shift"},
-		"m",
-		function(c)
-			c.maximized_horizontal = not c.maximized_horizontal
-			c:raise()
-		end,
-		{description = "(un)maximize horizontally", group = "client"}
 	)
 )
 
 -- Bind all key numbers to tags.
--- Be careful: we use keycodes to make it work on any keyboard layout.
--- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 9 do
+for i = 0, 9 do
+	local keycode = i
+	local index = i == 0 and 10 or i
+
 	globalkeys = gears.table.join(
 		globalkeys,
 		-- View tag only.
 		awful.key(
 			{modkey},
-			"#" .. i + 9,
+			keycode,
 			function()
-				local screen = awful.screen.focused()
-				local tag = screen.tags[i]
+				local tag = tags[index]
 				if tag then
-					tag:view_only()
+					local screen = tag.screen
+					sharedtags.viewonly(tag, screen)
+					awful.screen.focus(screen)
 				end
 			end,
 			{description = "view tag #" .. i, group = "tag"}
@@ -385,12 +346,12 @@ for i = 1, 9 do
 		-- Toggle tag display.
 		awful.key(
 			{modkey, "Control"},
-			"#" .. i + 9,
+			keycode,
 			function()
-				local screen = awful.screen.focused()
-				local tag = screen.tags[i]
+				local tag = tags[index]
 				if tag then
-					awful.tag.viewtoggle(tag)
+					local screen = tag.screen
+					sharedtags.viewtoggle(tag, screen)
 				end
 			end,
 			{description = "toggle tag #" .. i, group = "tag"}
@@ -398,11 +359,12 @@ for i = 1, 9 do
 		-- Move client to tag.
 		awful.key(
 			{modkey, "Shift"},
-			"#" .. i + 9,
+			keycode,
 			function()
 				if client.focus then
-					local tag = client.focus.screen.tags[i]
+					local tag = tags[index]
 					if tag then
+						local screen = tag.screen
 						client.focus:move_to_tag(tag)
 					end
 				end
@@ -412,10 +374,10 @@ for i = 1, 9 do
 		-- Toggle tag on focused client.
 		awful.key(
 			{modkey, "Control", "Shift"},
-			"#" .. i + 9,
+			keycode,
 			function()
 				if client.focus then
-					local tag = client.focus.screen.tags[i]
+					local tag = tags[index]
 					if tag then
 						client.focus:toggle_tag(tag)
 					end

@@ -18,6 +18,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+local sharedtags = require("sharedtags")
+local screens = require("screens")
+
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
@@ -85,6 +88,19 @@ awful.layout.layouts = {
 	-- awful.layout.suit.corner.se,
 }
 -- }}}
+
+tags = sharedtags({
+	{ name = "1", layout = awful.layout.layouts[3], screen = screens.primary },
+	{ name = "2", layout = awful.layout.layouts[3], screen = screens.primary },
+	{ name = "3", layout = awful.layout.layouts[3], screen = screens.primary },
+	{ name = "4", layout = awful.layout.layouts[3], screen = screens.primary },
+	{ name = "5", layout = awful.layout.layouts[3], screen = screens.primary },
+	{ name = "6", layout = awful.layout.layouts[3], screen = screens.secondary },
+	{ name = "7", layout = awful.layout.layouts[3], screen = screens.secondary },
+	{ name = "8", layout = awful.layout.layouts[3], screen = screens.secondary },
+	{ name = "9", layout = awful.layout.layouts[3], screen = screens.secondary },
+	{ name = "0", layout = awful.layout.layouts[3], screen = screens.secondary },
+})
 
 require("exitscreen")
 require("keys")
