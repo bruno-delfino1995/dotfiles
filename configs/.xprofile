@@ -1,7 +1,5 @@
 #!/bin/bash
 
-redshift -P -O 4500
-
 xrdb -I"$HOME" ~/.Xresources
 
 xsetroot -cursor_name left_ptr
