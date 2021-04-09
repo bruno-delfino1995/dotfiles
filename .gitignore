@@ -1,6 +1,4 @@
-colorschemes/*
 colorscheme.yaml
-!colorschemes/.gitkeep
 
 # compiled
 *.tmp

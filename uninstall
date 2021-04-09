@@ -1,4 +1,7 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
 DIR=$(readlink -f "$(dirname "$0")")
 INSTALLATION="$HOME/.dfiles"
 
@@ -9,4 +12,3 @@ stow -t "$HOME" -D "configs"
 cd "$DIR" || exit 1
 
 git worktree remove "$INSTALLATION" && rm -rf "$INSTALLATION"
-

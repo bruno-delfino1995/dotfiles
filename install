@@ -1,18 +1,22 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
 DIR=$(readlink -f "$(dirname "$0")")
 INSTALLATION="$HOME/.dfiles"
 BRANCH="installation"
 CURRENT_COLORSCHEME="$INSTALLATION/colorscheme.yaml"
 COLORSCHEME="$CURRENT_COLORSCHEME"
+CHOSEN_COLORSCHEME="${1:-}"
 
-if [[ -z "$1" && ! -e "$CURRENT_COLORSCHEME" ]]; then
+if [[ -z "$CHOSEN_COLORSCHEME" && ! -e "$CURRENT_COLORSCHEME" ]]; then
   echo "You don't have an installed colorscheme, please select a base16 scheme file"
   exit 1
-elif [[ -n "$1" && ! -e "$1" ]]; then
+elif [[ -n "$CHOSEN_COLORSCHEME" && ! -e "$CHOSEN_COLORSCHEME" ]]; then
   echo "The specified file doesn't exist"
   exit 1
-elif [[ -n "$1" && -e "$1" ]]; then
-  COLORSCHEME=$(realpath "$1")
+elif [[ -n "$CHOSEN_COLORSCHEME" && -e "$CHOSEN_COLORSCHEME" ]]; then
+  COLORSCHEME=$(realpath "$CHOSEN_COLORSCHEME")
 fi
 
 cd "$DIR" || exit 1
@@ -59,6 +63,12 @@ function build_configs() {
   done
 }
 
+function enable_services() {
+  systemctl --user enable --now emacs
+  systemctl --user add-wants autostart.target redshift.service
+}
+
 setup_local_installation
 build_configs
 install_configs
+enable_services
