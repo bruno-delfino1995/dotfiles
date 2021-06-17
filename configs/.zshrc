@@ -19,6 +19,9 @@ promptinit
 # Aliases
 [ -e ~/.zshrc.aliases ] && source ~/.zshrc.aliases
 
+# Functions
+[ -e ~/.zshrc.functions ] && source ~/.zshrc.functions
+
 # Secret stuff
 [ -e ~/.localrc ] && source ~/.localrc
 
