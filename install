@@ -5,19 +5,6 @@ IFS=$'\n\t'
 DIR=$(readlink -f "$(dirname "$0")")
 INSTALLATION="$HOME/.dfiles"
 BRANCH="installation"
-CURRENT_COLORSCHEME="$INSTALLATION/colorscheme.yaml"
-COLORSCHEME="$CURRENT_COLORSCHEME"
-CHOSEN_COLORSCHEME="${1:-}"
-
-if [[ -z "$CHOSEN_COLORSCHEME" && ! -e "$CURRENT_COLORSCHEME" ]]; then
-  echo "You don't have an installed colorscheme, please select a base16 scheme file"
-  exit 1
-elif [[ -n "$CHOSEN_COLORSCHEME" && ! -e "$CHOSEN_COLORSCHEME" ]]; then
-  echo "The specified file doesn't exist"
-  exit 1
-elif [[ -n "$CHOSEN_COLORSCHEME" && -e "$CHOSEN_COLORSCHEME" ]]; then
-  COLORSCHEME=$(realpath "$CHOSEN_COLORSCHEME")
-fi
 
 cd "$DIR" || exit 1
 
@@ -39,35 +26,10 @@ function install_configs() {
   stow -t "$HOME" -S "$package"
 }
 
-function build_configs() {
-  cd "$INSTALLATION" || exit 1
-
-  stat "$COLORSCHEME" > /dev/null || exit 1
-
-  if [[ "$COLORSCHEME" != "$CURRENT_COLORSCHEME" ]]; then
-    cp "$COLORSCHEME" "$CURRENT_COLORSCHEME"
-  fi
-
-  for template in $(fd -H -e mustache --exclude "colorschemes" .); do
-    target="${template%.mustache}"
-    tmp="${template/%.mustache/.tmp}"
-
-    theme=$(python build-base16-json.py \
-      "$(yq '.' "$CURRENT_COLORSCHEME")" \
-      "$(basename "$CURRENT_COLORSCHEME")")
-
-    echo "$theme" | mustache - "$template" > "$tmp"
-
-    mv "$tmp" "$target"
-    chmod --reference="$template" "$target"
-  done
-}
-
 function enable_services() {
   systemctl --user enable --now emacs
 }
 
 setup_local_installation
-build_configs
 install_configs
 enable_services

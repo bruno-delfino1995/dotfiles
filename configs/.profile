@@ -15,12 +15,7 @@ export FZF_BASE="/usr/local/opt/fzf"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_ALT_C_COMMAND='fd --type d --max-depth 3'
-export FZF_DEFAULT_OPTS="
-  --layout=default --height 40%
-  --color=bg+:#{{base01-hex}},bg:#{{base00-hex}},spinner:#{{base0C-hex}},hl:#{{base0D-hex}}
-  --color=fg:#{{base04-hex}},header:#{{base0D-hex}},info:#{{base0A-hex}},pointer:#{{base0C-hex}}
-  --color=marker:#{{base0C-hex}},fg+:#{{base06-hex}},prompt:#{{base0A-hex}},hl+:#{{base0D-hex}}
-"
+export FZF_DEFAULT_OPTS='--layout=default --height 40%'
 
 export QT_STYLE_OVERRIDE=gtk
 export QT_SELECT=qt5

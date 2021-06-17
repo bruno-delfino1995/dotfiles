@@ -121,7 +121,6 @@ set smartcase   " ... but not when search pattern contains upper case characters
 " }}}
 " Color Settings {{{
 
-colorscheme base16
 set nocursorcolumn                    " disable column hightlight
 set nocursorline                      " disable line hightlight
 call matchadd('ColorColumn', '\%81v') " hightlight characters at column 81
