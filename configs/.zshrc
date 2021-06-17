@@ -1,11 +1,3 @@
-# Start X Server
-if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -le 2 ]; then
-  logfile="$HOME/.startx.log"
-  [ -e "$logfile" ] && mv "$logfile" "$HOME/.previous-startx.log"
-
-  exec startx ~/.xinitrc &> "$logfile"
-fi
-
 # Config
 HISTFILE=~/.histfile
 HISTSIZE=1000

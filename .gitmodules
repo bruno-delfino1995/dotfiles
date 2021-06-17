@@ -1,3 +1,0 @@
-[submodule "configs/.config/awesome/sharedtags"]
-	path = configs/.config/awesome/sharedtags
-	url = git@github.com:Drauthius/awesome-sharedtags.git

@@ -65,7 +65,6 @@ function build_configs() {
 
 function enable_services() {
   systemctl --user enable --now emacs
-  systemctl --user add-wants autostart.target redshift.service
 }
 
 setup_local_installation
